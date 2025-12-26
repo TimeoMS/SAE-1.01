@@ -52,8 +52,6 @@ void clearScreen()
     cout << "\033[H\033[2J";
 }
 
-/* UTILS */
-
 void displayGrid(const mat &m)
 {
     clearScreen();
@@ -67,12 +65,41 @@ void displayGrid(const mat &m)
     }
 }
 
-/* UTILS */
+void makeAMove(mat &grid, const maPosition &pos, const char direction)
+{
+    int targetOrd = pos.ord;
+    int targetAbs = pos.abs;
+
+    switch (direction)
+    {
+    case 'r':
+        targetAbs++;
+        break;
+    case 'l':
+        targetAbs--;
+        break;
+    case 'u':
+        targetOrd++;
+        break;
+    case 'd':
+        targetOrd--;
+        break;
+    default:
+        return;
+    }
+
+    if (targetOrd >= 0 && targetOrd < grid.size() &&
+        targetAbs >= 0 && targetAbs < grid[0].size())
+        std::swap(grid[pos.ord][pos.abs], grid[targetOrd][targetAbs]);
+}
 
 int main(int argc, char const *argv[])
 {
     mat m;
     initGrid(m, 4);
+    displayGrid(m);
+    makeAMove(m, maPosition{3, 2}, 'r');
+    cout << "---------------------" << endl;
     displayGrid(m);
     return 0;
 }

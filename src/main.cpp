@@ -3,7 +3,7 @@
 #include <ctime>
 #include <random>
 
-using namespace std;
+using std::cout, std::vector;
 
 const unsigned KReset(0);
 const unsigned KNoir(30);
@@ -16,26 +16,11 @@ const unsigned KCyan(36);
 const unsigned KMaxTimes(3);
 const unsigned KNbCandies(10);
 
-typedef vector<unsigned> line; // un type représentant une ligne de la grille
-typedef vector<line> mat;      // un type représentant la grille
-
 struct maPosition
 {
     unsigned abs;
     unsigned ord;
-}; // une position dans la girlle
-
-void initGrid(mat &grid, const size_t &matSize)
-{
-    grid.resize(matSize);
-    srand(time(0));
-    for (line &l : grid)
-    {
-        l.resize(matSize);
-        for (unsigned &u : l)
-            u = rand() % KNbCandies;
-    }
-}
+}; // une position dans la grille
 
 void couleur(const unsigned &coul)
 {
@@ -52,54 +37,91 @@ void clearScreen()
     cout << "\033[H\033[2J";
 }
 
-void displayGrid(const mat &m)
+struct Matrix // Pour l'optimisation
 {
-    clearScreen();
-    couleur(KReset);
-    for (const line &l : m)
-    {
-        cout << '|';
-        for (const unsigned &u : l)
-            cout << setw(2) << u;
-        cout << setw(2) << '|' << endl;
-    }
-}
 
-void makeAMove(mat &grid, const maPosition &pos, const char direction)
-{
-    int targetOrd = pos.ord;
-    int targetAbs = pos.abs;
+    size_t n;
+    vector<unsigned> m;
 
-    switch (direction)
+    Matrix(size_t size) : n(size), m(size * size)
     {
-    case 'r':
-        targetAbs++;
-        break;
-    case 'l':
-        targetAbs--;
-        break;
-    case 'u':
-        targetOrd++;
-        break;
-    case 'd':
-        targetOrd--;
-        break;
-    default:
-        return;
+        for (size_t y(0); y < size; ++y)
+            for (size_t x(0); x < size; ++x)
+                at(x, y) = rand() % KNbCandies;
+    };
+
+    void displayGrid() const
+    {
+        clearScreen();
+        couleur(KReset);
+
+        for (size_t y = 0; y < n; ++y)
+        {
+            cout << '|';
+            for (size_t x = 0; x < n; ++x)
+            {
+                cout << std::setw(2) << m[y * n + x] << ' ';
+            }
+            cout << "|\n";
+        }
     }
 
-    if (targetOrd >= 0 && targetOrd < grid.size() &&
-        targetAbs >= 0 && targetAbs < grid[0].size())
-        std::swap(grid[pos.ord][pos.abs], grid[targetOrd][targetAbs]);
-}
+    unsigned &at(const maPosition &pos)
+    {
+        return m[pos.ord * n + pos.abs];
+    }
+
+    const unsigned &at(const maPosition &pos) const
+    {
+        return m[pos.ord * n + pos.abs];
+    }
+
+    unsigned &at(size_t x, size_t y)
+    {
+        return m[y * n + x];
+    }
+
+    const unsigned &at(size_t x, size_t y) const
+    {
+        return m[y * n + x];
+    }
+
+    void makeAMove(const maPosition &pos, char direction)
+    {
+        size_t targetOrd = pos.ord;
+        size_t targetAbs = pos.abs;
+
+        switch (direction)
+        {
+        case 'r':
+            if (targetAbs + 1 < n)
+                targetAbs++;
+            break;
+        case 'l':
+            if (targetAbs > 0)
+                targetAbs--;
+            break;
+        case 'u':
+            if (targetOrd > 0)
+                targetOrd--;
+            break;
+        case 'd':
+            if (targetOrd + 1 < n)
+                targetOrd++;
+            break;
+        default:
+            return;
+        }
+
+        std::swap(at(pos), at(targetAbs, targetOrd));
+    }
+};
 
 int main(int argc, char const *argv[])
 {
-    mat m;
-    initGrid(m, 4);
-    displayGrid(m);
-    makeAMove(m, maPosition{3, 2}, 'r');
-    cout << "---------------------" << endl;
-    displayGrid(m);
+    srand(time(0));
+    Matrix m(3);
+    m.displayGrid();
+
     return 0;
 }

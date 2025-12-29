@@ -47,7 +47,7 @@ struct Matrix // Pour l'optimisation
     {
         for (size_t y(0); y < size; ++y)
             for (size_t x(0); x < size; ++x)
-                at(x, y) = rand() % KNbCandies;
+                at(x, y) = rand() % (KNbCandies - 1) + 1;
     };
 
     void displayGrid() const
@@ -115,13 +115,47 @@ struct Matrix // Pour l'optimisation
 
         std::swap(at(pos), at(targetAbs, targetOrd));
     }
+
+    void checkMatches()
+    {
+        vector<vector<bool>> toDelete(n, vector<bool>(n, false));
+        for (size_t y(0); y < n; ++y) {
+            for (size_t x(0); x < n - 3; ++x) {
+                if (at(x, y) == at(x + 1, y) && at(x, y) == at(x + 2, y)) {
+                    int lenth = x + 2;
+                    while (lenth + 1 < n && at(x, y) == at(lenth + 1, y))
+                        lenth++;
+                    for (size_t i = x; i <= lenth; ++i)
+                        toDelete[y][i] = true;
+                    x = lenth;
+                }
+            }
+        }
+        for (size_t x(0); x < n; ++x) {
+            for (size_t y(0); y < n - 3; ++y) {
+                if (at(x, y) == at(x, y + 1) && at(x, y) == at(x, y + 2)) {
+                    int lenth = x + 2;
+                    while (lenth + 1 < n && at(x, y) == at(x, lenth + 1))
+                        lenth++;
+                    for (size_t i = x; i <= lenth; ++i)
+                        toDelete[i][x] = true;
+                    y = lenth;
+                }
+            }
+        }
+        for (size_t y(0); y < n; ++y)
+            for (size_t x(0); x < n; ++x)
+                if (toDelete[y][x])
+                    at(x, y) = 0;
+    }
 };
 
 int main(int argc, char const *argv[])
 {
     srand(time(0));
-    Matrix m(3);
+    Matrix m(10);
     m.displayGrid();
-
+    m.checkMatches();
+    m.displayGrid();
     return 0;
 }

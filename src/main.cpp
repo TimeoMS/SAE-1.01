@@ -2,19 +2,30 @@
 #include <iomanip>
 #include <ctime>
 #include <random>
+#include <vector>
 
 using std::cout, std::vector;
 
-const unsigned KReset(0);
-const unsigned KNoir(30);
-const unsigned KRouge(31);
-const unsigned KVert(32);
-const unsigned KJaune(33);
-const unsigned KBleu(34);
-const unsigned KMAgenta(35);
-const unsigned KCyan(36);
-const unsigned KMaxTimes(3);
-const unsigned KNbCandies(10);
+#ifndef NDEBUG
+unsigned AllocationCount(0);
+
+void *operator new(size_t size)
+{
+    ++AllocationCount;
+    return malloc(size);
+}
+#endif
+
+constexpr unsigned KReset(0);
+constexpr unsigned KNoir(30);
+constexpr unsigned KRouge(31);
+constexpr unsigned KVert(32);
+constexpr unsigned KJaune(33);
+constexpr unsigned KBleu(34);
+constexpr unsigned KMAgenta(35);
+constexpr unsigned KCyan(36);
+constexpr unsigned KMaxTimes(3);
+constexpr unsigned KNbCandies(10);
 
 struct maPosition
 {
@@ -55,10 +66,10 @@ struct Matrix // Pour l'optimisation
         clearScreen();
         couleur(KReset);
 
-        for (size_t y = 0; y < n; ++y)
+        for (size_t y(0); y < n; ++y)
         {
             cout << '|';
-            for (size_t x = 0; x < n; ++x)
+            for (size_t x(0); x < n; ++x)
             {
                 cout << std::setw(2) << m[y * n + x] << ' ';
             }
@@ -122,6 +133,10 @@ int main(int argc, char const *argv[])
     srand(time(0));
     Matrix m(3);
     m.displayGrid();
+
+#ifndef NDEBUG
+    cout << AllocationCount << '\n';
+#endif
 
     return 0;
 }

@@ -20,5 +20,5 @@ struct Matrix {
 };
 ```
 
-- Le 1D vector permet un **accès rapide** avec `y\*n+x` et évite les allocations multiples des vecteurs 2D.
+- Le 1D vector permet un **accès rapide** avec `y*n+x` et évite les allocations multiples des vecteurs 2D.
 - Les méthodes `at()` sont surchargées pour **plus de lisibilité** avec `maPosition`.

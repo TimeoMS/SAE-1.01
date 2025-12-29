@@ -118,7 +118,10 @@ struct Matrix // Pour l'optimisation
 
     void checkMatches()
     {
+        // vecteur a optimiser pour stocker les positions
         vector<vector<bool>> toDelete(n, vector<bool>(n, false));
+
+        // verification des lignes
         for (size_t y(0); y < n; ++y) {
             for (size_t x(0); x < n - 3; ++x) {
                 if (at(x, y) == at(x + 1, y) && at(x, y) == at(x + 2, y)) {
@@ -131,6 +134,8 @@ struct Matrix // Pour l'optimisation
                 }
             }
         }
+
+        // verification des colonnes
         for (size_t x(0); x < n; ++x) {
             for (size_t y(0); y < n - 3; ++y) {
                 if (at(x, y) == at(x, y + 1) && at(x, y) == at(x, y + 2)) {
@@ -143,6 +148,8 @@ struct Matrix // Pour l'optimisation
                 }
             }
         }
+
+        // suppression des triples ou plus
         for (size_t y(0); y < n; ++y)
             for (size_t x(0); x < n; ++x)
                 if (toDelete[y][x])

@@ -29,16 +29,16 @@ constexpr unsigned KNbCandies(10);
 
 struct maPosition
 {
-    unsigned abs;
-    unsigned ord;
+    size_t abs;
+    size_t ord;
 }; // une position dans la grille
 
-void couleur(const unsigned &coul)
+void couleur(unsigned coul)
 {
     cout << "\033[" << coul << "m";
 }
 
-void fond(const unsigned &coul)
+void fond(unsigned coul)
 {
     cout << "\033[" << coul + 10 << "m";
 }
@@ -56,9 +56,8 @@ struct Matrix // Pour l'optimisation
 
     Matrix(size_t size) : n(size), m(size * size)
     {
-        for (size_t y(0); y < size; ++y)
-            for (size_t x(0); x < size; ++x)
-                at(x, y) = rand() % KNbCandies;
+        for (size_t i(0); i < m.size(); ++i)
+            m[i] = rand() % KNbCandies;
     };
 
     void displayGrid() const
@@ -126,16 +125,55 @@ struct Matrix // Pour l'optimisation
 
         std::swap(at(pos), at(targetAbs, targetOrd));
     }
+
+    bool atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howMany)
+    {
+        size_t startY(0);
+        unsigned count(1);
+        size_t index(x);
+        unsigned previousVal = m[index];
+        index += n;
+
+        for (size_t y(1); y < n; ++y)
+        {
+            unsigned currentVal = m[index];
+            if (previousVal == currentVal)
+                ++count;
+            else
+            {
+                if (count >= 3)
+                {
+                    pos = {x, startY};
+                    howMany = count;
+                    return true;
+                }
+
+                previousVal = currentVal;
+
+                startY = y;
+                count = 1;
+            }
+            index += n;
+        }
+
+        if (count >= 3)
+        {
+            pos = {x, startY};
+            howMany = count;
+            return true;
+        }
+
+        return false;
+    }
 };
 
-int main(int argc, char const *argv[])
+int main(int argc, const char *argv[])
 {
     srand(time(0));
-    Matrix m(3);
-    m.displayGrid();
+    Matrix m(4);
 
 #ifndef NDEBUG
-    cout << AllocationCount << '\n';
+    cout << "----------------\nNombre allocation: " << AllocationCount << '\n';
 #endif
 
     return 0;

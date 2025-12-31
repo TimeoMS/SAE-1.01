@@ -1,78 +1,37 @@
+#include "Matrix/matrix.h"
 #include <iostream>
-#include <iomanip>
-#include <ctime>
-#include <random>
 
-using namespace std;
+#ifndef NDEBUG
+unsigned AllocationCount(0);
 
-const unsigned KReset(0);
-const unsigned KNoir(30);
-const unsigned KRouge(31);
-const unsigned KVert(32);
-const unsigned KJaune(33);
-const unsigned KBleu(34);
-const unsigned KMAgenta(35);
-const unsigned KCyan(36);
-const unsigned KMaxTimes(3);
-const unsigned KNbCandies(10);
-
-typedef vector<unsigned> line; // un type représentant une ligne de la grille
-typedef vector<line> mat;      // un type représentant la grille
-
-struct maPosition
+void *operator new(size_t size)
 {
-    unsigned abs;
-    unsigned ord;
-}; // une position dans la girlle
+    ++AllocationCount;
+    return malloc(size);
+}
+#endif
 
-void initGrid(mat &grid, const size_t &matSize)
+int main(int argc, const char *argv[])
 {
-    grid.resize(matSize);
     srand(time(0));
-    for (line &l : grid)
+
+    for (;;)
     {
-        l.resize(matSize);
-        for (unsigned &u : l)
-            u = rand() % KNbCandies;
+        Matrix m(4);
+        casali::maPosition pos{0, 0};
+        unsigned count(0);
+        for (size_t i(0); i < 4; ++i)
+            if (m.atLeastThreeInAColumnFrom(i, pos, count))
+            {
+                m.displayGrid();
+                std::cout << "Il y a " << count << " nombres qui se suivent a (" << pos.abs << ',' << pos.ord << ")\n";
+                return 0;
+            }
     }
-}
 
-void couleur(const unsigned &coul)
-{
-    cout << "\033[" << coul << "m";
-}
+#ifndef NDEBUG
+    std::cout << "----------------\nNombre allocation: " << AllocationCount << '\n';
+#endif
 
-void fond(const unsigned &coul)
-{
-    cout << "\033[" << coul + 10 << "m";
-}
-
-void clearScreen()
-{
-    cout << "\033[H\033[2J";
-}
-
-/* UTILS */
-
-void displayGrid(const mat &m)
-{
-    clearScreen();
-    couleur(KReset);
-    for (const line &l : m)
-    {
-        cout << '|';
-        for (const unsigned &u : l)
-            cout << setw(2) << u;
-        cout << setw(2) << '|' << endl;
-    }
-}
-
-/* UTILS */
-
-int main(int argc, char const *argv[])
-{
-    mat m;
-    initGrid(m, 4);
-    displayGrid(m);
     return 0;
 }

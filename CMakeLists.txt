@@ -2,16 +2,11 @@ cmake_minimum_required(VERSION 3.10)
 
 project(CandyCrush LANGUAGES CXX)
 
-find_package(Curses REQUIRED)
-
-add_executable(candycrush_term
-  src/term/main.cc
-  src/term/term.cc)
-
-target_include_directories(candycrush_term PRIVATE ${CURSES_INCLUDE_DIR})
-target_include_directories(candycrush_term PUBLIC inc/term)
-
-target_link_libraries(candycrush_term ${CURSES_LIBRARIES})
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
 add_executable(CandyCrush src/main.cpp)
 
+add_subdirectory(src/Matrix)
+target_link_libraries(CandyCrush PRIVATE Matrix)

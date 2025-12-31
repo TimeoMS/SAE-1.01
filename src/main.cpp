@@ -165,6 +165,46 @@ struct Matrix // Pour l'optimisation
 
         return false;
     }
+
+    bool atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany)
+    {
+        size_t startX(0);
+        unsigned count(1);
+        size_t index(y * n);
+        unsigned previousVal = m[index];
+        index += 1;
+
+        for (size_t x(1); x < n; ++x)
+        {
+            unsigned currentVal = m[index];
+            if (previousVal == currentVal)
+                ++count;
+            else
+            {
+                if (count >= 3)
+                {
+                    pos = {startX, y};
+                    howMany = count;
+                    return true;
+                }
+
+                previousVal = currentVal;
+
+                startX = x;
+                count = 1;
+            }
+            ++index;
+        }
+
+        if (count >= 3)
+        {
+            pos = {startX, y};
+            howMany = count;
+            return true;
+        }
+
+        return false;
+    }
 };
 
 int main(int argc, const char *argv[])

@@ -161,9 +161,27 @@ struct Matrix // Pour l'optimisation
         }
         return score;        
     }
+
+    void reffill()
+    {
+        for (size_t x(0); x < n; ++x) {
+            for (size_t y(n - 1); y < n; --y) {
+                if (at(x, y) == 0) {
+                    size_t k = y;
+                    while (k > 0 && at(x, k) == 0)
+                        k--;
+                    if (k == 0 && at(x, k) == 0) {
+                        at(x, y) = rand() % (KNbCandies - 1) + 1;
+                    } else {
+                        std::swap(at(x, y), at(x, k));
+                    }
+                }
+            }
+        }
+    }
 };
 
-void candyCrush(unsigned short nb_shots)
+void candyCrushDefault(unsigned short nb_shots)
 {
     srand(time(0));
     Matrix m(10);
@@ -182,15 +200,42 @@ void candyCrush(unsigned short nb_shots)
     cout << "Game Over your score is: " << score << "\n";
 }
 
+void candyCrushInfinite()
+{
+    srand(time(0));
+    Matrix m(10);
+    unsigned score = m.checkMatches();
+    m.reffill();
+    m.displayGrid();
+    while (true) {
+        std::string input;
+        maPosition pos;
+        char direction;
+        cout << "Enter Your Move (x y direction): ";
+        getline(cin, input);
+        if (input == "exit" || input == "quit")
+            break;
+        m.makeAMove(pos, direction);
+        score += m.checkMatches();
+        m.reffill();
+        m.displayGrid();
+        cout << "current score: " << score << "\n";
+    }
+    cout << "Game Over your score is: " << score << "\n";
+}
+
 int main(int argc, char const **argv)
 {
     if (argc == 2 && std::string(argv[1]) == "-h") {
         cout << "Usage: \n"
-             << "  ./candycrush [nb_shots](def: 10)    Start the game\n"
+             << "  ./candycrush -infinite              Start the infinite game mode\n"
+             << "  ./candycrush [nb_shots](def: 10)    Start the default game mode\n"
              << "  ./candycrush -h                     Show this help message\n";
         return 0;
+    } else if (argc == 2 && std::string(argv[1]) == "-infinite") {
+        candyCrushInfinite();
     } else {
-        candyCrush(argv[1] ? std::stoi(argv[1]) : 10);
+        candyCrushDefault(argv[1] ? std::stoi(argv[1]) : 10);
     }
     return 0;
 }

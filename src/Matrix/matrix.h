@@ -2,7 +2,7 @@
 #define MATRIX_H
 
 #include <vector>
-#include "../Casali/casali.h"
+#include "Casali/casali.h"
 #include "../constants.h"
 
 struct Matrix // Pour l'optimisation

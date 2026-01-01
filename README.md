@@ -40,3 +40,19 @@ brew install ncurses
 ```bash
 apt install ncurses -y
 ```
+
+## Build
+
+À la racine du projet lancez ces commandes:
+
+```shell
+# Crée un dossier build et s'y rendre
+mkdir build
+cd build
+# Crée le build cmake en Debug avec Makefile, si vous êtes sur Windows c'est "MinGW Makefiles"
+cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
+# Permet de compiler le projet
+make
+# Lance l'executable
+./CandyCrush
+```

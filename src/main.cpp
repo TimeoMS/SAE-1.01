@@ -24,13 +24,15 @@ int main(int argc, const char *argv[])
             if (m.atLeastThreeInAColumnFrom(i, pos, count))
             {
                 m.displayGrid();
-                std::cout << "Il y a " << count << " nombres qui se suivent a (" << pos.abs << ',' << pos.ord << ")\n";
+                std::cout << "Il y a " << count << " nombres qui se suivent a ("
+                          << pos.abs << ',' << pos.ord << ")\n";
                 return 0;
             }
     }
 
 #ifndef NDEBUG
-    std::cout << "----------------\nNombre allocation: " << AllocationCount << '\n';
+    std::cout << "----------------\nNombre allocation: " << AllocationCount
+              << '\n';
 #endif
 
     return 0;

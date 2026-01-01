@@ -22,3 +22,21 @@ struct Matrix {
 
 - Le 1D vector permet un **accès rapide** avec `y*n+x` et évite les allocations multiples des vecteurs 2D.
 - Les méthodes `at()` sont surchargées pour **plus de lisibilité** avec `maPosition`.
+
+## Installation
+
+Lancez cette commande adapté à votre OS pour installer les dépendances nécessaires
+
+### MacOS
+
+Vous aurez besoin de `homebrew`
+
+```zsh
+brew install ncurses
+```
+
+### Linux
+
+```sh
+apt install ncurses -y
+```

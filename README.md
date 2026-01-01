@@ -31,12 +31,12 @@ Lancez cette commande adapté à votre OS pour installer les dépendances néces
 
 Vous aurez besoin de `homebrew`
 
-```zsh
+```bash
 brew install ncurses
 ```
 
 ### Linux
 
-```sh
+```bash
 apt install ncurses -y
 ```

@@ -1,6 +1,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
+#include <iostream>
 #include <vector>
 #include "Casali/casali.h"
 #include "../constants.h"
@@ -14,7 +15,7 @@ struct Matrix // Pour l'optimisation
     Matrix(size_t size) : n(size), m(size * size)
     {
         for (size_t i(0); i < m.size(); ++i)
-            m[i] = rand() % KNbCandies;
+            m[i] = 1 + std::rand() % KNbCandies;
     };
 
     void displayGrid() const;
@@ -43,7 +44,13 @@ struct Matrix // Pour l'optimisation
 
     bool atLeastThreeInAColumnFrom(size_t x, casali::maPosition &pos, unsigned &howMany) const;
 
+    void removalInColumn(casali::maPosition &pos, unsigned howMany);
+
     bool atLeastThreeInARowFrom(size_t y, casali::maPosition &pos, unsigned &howMany) const;
+
+    void removalInRow(casali::maPosition &pos, unsigned howMany);
+
+    void reffill(int n);
 };
 
 #endif

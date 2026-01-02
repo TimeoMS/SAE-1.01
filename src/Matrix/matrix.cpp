@@ -44,6 +44,14 @@ bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howM
     return false;
 }
 
+void Matrix::removalInColumn(maPosition &pos, unsigned howMany)
+{
+    for (size_t y = pos.ord; y < pos.ord + howMany; ++y)
+    {
+        at(pos.abs, y) = 0;
+    }
+}
+
 bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany) const
 {
 
@@ -83,6 +91,32 @@ bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany
     }
 
     return false;
+}
+
+void Matrix::removalInRow(maPosition &pos, unsigned howMany)
+{
+    for (size_t x = pos.abs; x < pos.abs + howMany; ++x)
+    {
+        at(x, pos.ord) = 0;
+    }
+}
+
+void Matrix::reffill(int n)
+{
+    for (size_t x(0); x < n; ++x) {
+        for (size_t y(n - 1); y < n; --y) {
+            if (at(x, y) == 0) {
+                size_t k = y;
+                while (k > 0 && at(x, k) == 0)
+                    k--;
+                if (k == 0 && at(x, k) == 0) {
+                    at(x, y) = rand() % (KNbCandies - 1) + 1;
+                } else {
+                    std::swap(at(x, y), at(x, k));
+                }
+            }
+        }
+    }
 }
 
 void Matrix::makeAMove(const maPosition &pos, char direction)

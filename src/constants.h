@@ -10,6 +10,6 @@ constexpr unsigned KBleu(34);
 constexpr unsigned KMAgenta(35);
 constexpr unsigned KCyan(36);
 constexpr unsigned KMaxTimes(3);
-constexpr unsigned KNbCandies(10);
+constexpr unsigned KNbCandies(9);
 
 #endif

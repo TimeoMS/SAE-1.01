@@ -20,5 +20,39 @@ struct Matrix {
 };
 ```
 
-- Le 1D vector permet un **accès rapide** avec `y\*n+x` et évite les allocations multiples des vecteurs 2D.
+- Le 1D vector permet un **accès rapide** avec `y*n+x` et évite les allocations multiples des vecteurs 2D.
 - Les méthodes `at()` sont surchargées pour **plus de lisibilité** avec `maPosition`.
+
+## Installation
+
+Lancez cette commande adapté à votre OS pour installer les dépendances nécessaires
+
+### MacOS
+
+Vous aurez besoin de `homebrew`
+
+```bash
+brew install ncurses
+```
+
+### Linux
+
+```bash
+apt install ncurses -y
+```
+
+## Build
+
+À la racine du projet lancez ces commandes:
+
+```shell
+# Crée un dossier build et s'y rendre
+mkdir build
+cd build
+# Crée le build cmake en Debug avec Makefile, si vous êtes sur Windows c'est "MinGW Makefiles"
+cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
+# Permet de compiler le projet
+make
+# Lance l'executable
+./CandyCrush
+```

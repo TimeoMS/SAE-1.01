@@ -125,9 +125,7 @@ void Matrix::displayGrid() const
     {
         std::cout << '|';
         for (size_t x(0); x < n; ++x)
-        {
             cout << std::setw(2) << m[y * n + x] << ' ';
-        }
         cout << "|\n";
     }
 }

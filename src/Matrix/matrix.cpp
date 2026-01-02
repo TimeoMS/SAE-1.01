@@ -1,8 +1,15 @@
 #include "matrix.h"
 #include <iostream>
 #include <iomanip>
+#include <random>
 
 using std::cout, casali::maPosition;
+
+Matrix::Matrix(size_t size) : n(size), m(size * size)
+{
+    for (size_t i(0); i < m.size(); ++i)
+        m[i] = rand() % KNbCandies;
+};
 
 bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howMany) const
 {

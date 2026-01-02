@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cassert>
 #include <iostream>
+#include <cstring>
 
 /* source : https://stackoverflow.com/a/43924525 */
 #define KEY_CTRL(c) ((c) & 0x1f)
@@ -211,32 +212,24 @@ namespace term
 	{
 		size_t i;
 
-		std::memset(buffer, int(cell(' ')), width * height * sizeof(cell));
+		std::fill_n(buffer, width * height, cell(' '));
 
 		for (window const &win : window_list)
 		{
-			int left;
-			int top;
-			int right;
-			int bottom;
+			int left = int(win.get_position_x());
+			int top = int(win.get_position_y());
+			int right = left + int(win.get_width()) - 1;
+			int bottom = top + int(win.get_height()) - 1;
 
-			int offset;
-			int x;
-			int y;
+			int offset = win.is_bordered();
 
-			left = int(win.get_position_x());
-			top = int(win.get_position_y());
-			right = left + int(win.get_width()) - 1;
-			bottom = top + int(win.get_height()) - 1;
-
-			offset = win.is_bordered();
-			y = std::max(top - offset, 0);
-
-			for (; y <= std::min(bottom + offset, int(height) - 1); ++y)
+			for (int y = std::max(top - offset, 0);
+				y <= std::min(bottom + offset, int(height) - 1);
+				++y)
 			{
-				x = std::max(left - offset, 0);
-
-				for (; x <= std::min(right + offset, int(width) - 1); ++x)
+				for (int x = std::max(left - offset, 0);
+					x <= std::min(right + offset, int(width) - 1);
+					++x)
 				{
 					buffer[y * width + x] = render_cell(win, x, y);
 				}
@@ -244,11 +237,8 @@ namespace term
 		}
 
 		move(0, 0);
-
 		for (i = 0; i < width * height; ++i)
-		{
 			addch(buffer[i]);
-		}
 
 		refresh();
 	}

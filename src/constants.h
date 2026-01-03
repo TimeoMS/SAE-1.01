@@ -11,5 +11,6 @@ constexpr unsigned KMAgenta(35);
 constexpr unsigned KCyan(36);
 constexpr unsigned KMaxTimes(3);
 constexpr unsigned KNbCandies(10);
+constexpr unsigned KImpossible(KNbCandies);
 
 #endif

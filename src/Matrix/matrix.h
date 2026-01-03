@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "Casali/casali.h"
-#include "../constants.h"
 
 struct Matrix // Pour l'optimisation
 {
@@ -36,10 +35,12 @@ struct Matrix // Pour l'optimisation
     }
 
     void makeAMove(const casali::maPosition &pos, char direction);
-
     bool atLeastThreeInAColumnFrom(size_t x, casali::maPosition &pos, unsigned &howMany) const;
-
     bool atLeastThreeInARowFrom(size_t y, casali::maPosition &pos, unsigned &howMany) const;
+    void removalInColumn(const casali::maPosition &pos, unsigned howMany);
+    void removalInRow(const casali::maPosition &pos, unsigned howMany);
+    void switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2);
+    void switch2posRow(const casali::maPosition &pos1, const casali::maPosition &pos2);
 };
 
 #endif

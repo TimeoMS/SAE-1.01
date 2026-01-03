@@ -17,16 +17,17 @@ int main(int argc, const char *argv[])
 
     for (;;)
     {
-        Matrix m(4);
+        Matrix m(6);
         casali::maPosition pos{0, 0};
         unsigned count(0);
-        for (size_t i(0); i < 4; ++i)
-            if (m.atLeastThreeInAColumnFrom(i, pos, count))
+        for (size_t x(0); x < 6; ++x)
+            if (m.atLeastThreeInAColumnFrom(x, pos, count))
             {
+                std::cout << "---------------------\n";
                 m.displayGrid();
-                std::cout << "Il y a " << count << " nombres qui se suivent a ("
-                          << pos.abs << ',' << pos.ord << ")\n";
-                return 0;
+                std::cout << "---------------------\n";
+                m.removalInColumn(pos, count);
+                m.displayGrid();
             }
     }
 

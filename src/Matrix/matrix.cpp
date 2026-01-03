@@ -1,4 +1,5 @@
 #include "matrix.h"
+#include "../constants.h"
 #include <iostream>
 #include <iomanip>
 #include <random>
@@ -135,4 +136,40 @@ void Matrix::displayGrid() const
             cout << std::setw(2) << m[y * n + x] << ' ';
         cout << "|\n";
     }
+}
+
+void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2)
+{
+    size_t index(pos2.ord * n + pos1.abs);
+    size_t indexFinal(pos1.ord * n + pos1.abs);
+
+    for (; index > indexFinal;)
+    {
+        std::swap(m[index], m[index - n]);
+        index -= n;
+    }
+}
+
+void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
+{
+    maPosition topOfColumn{pos.abs, 0};
+
+    for (size_t i(0); i < howMany; ++i)
+    {
+        m[pos.ord * n + pos.abs] = KImpossible;
+        switch2posColumn(topOfColumn, pos);
+    }
+}
+
+void Matrix::removalInRow(const maPosition &pos, unsigned howMany)
+{
+    unsigned index(pos.ord * n + pos.abs);
+    for (size_t i(0); i < howMany; ++i)
+    {
+        m[index] = KImpossible;
+        ++index;
+    }
+
+    if (pos.ord == 0)
+        return;
 }

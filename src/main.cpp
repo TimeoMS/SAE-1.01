@@ -15,19 +15,22 @@ int main(int argc, const char *argv[])
 {
     srand(time(0));
 
-    for (;;)
+    bool exit(false);
+
+    for (; !exit;)
     {
         Matrix m(6);
         casali::maPosition pos{0, 0};
         unsigned count(0);
         for (size_t x(0); x < 6; ++x)
-            if (m.atLeastThreeInAColumnFrom(x, pos, count))
+            if (m.atLeastThreeInARowFrom(x, pos, count))
             {
                 std::cout << "---------------------\n";
                 m.displayGrid();
                 std::cout << "---------------------\n";
-                m.removalInColumn(pos, count);
+                m.removalInRow(pos, count);
                 m.displayGrid();
+                exit = true;
             }
     }
 

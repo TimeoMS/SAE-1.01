@@ -152,10 +152,10 @@ void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPo
 
 void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
 {
-    maPosition topOfColumn{pos.abs, 0};
 
     for (size_t i(0); i < howMany; ++i)
     {
+        maPosition topOfColumn{pos.abs, 0};
         m[pos.ord * n + pos.abs] = KImpossible;
         switch2posColumn(topOfColumn, pos);
     }
@@ -163,13 +163,16 @@ void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
 
 void Matrix::removalInRow(const maPosition &pos, unsigned howMany)
 {
-    unsigned index(pos.ord * n + pos.abs);
-    for (size_t i(0); i < howMany; ++i)
-    {
-        m[index] = KImpossible;
-        ++index;
-    }
 
-    if (pos.ord == 0)
-        return;
+    for (size_t i = 0; i < howMany; ++i)
+    {
+        unsigned currentAbs = pos.abs + i;
+
+        maPosition holePos = {currentAbs, pos.ord};
+        maPosition topOfThisColumn = {currentAbs, 0};
+
+        m[pos.ord * n + currentAbs] = KImpossible;
+
+        switch2posColumn(topOfThisColumn, holePos);
+    }
 }

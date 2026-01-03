@@ -40,6 +40,7 @@ struct Matrix // Pour l'optimisation
     void removalInColumn(const casali::maPosition &pos, unsigned howMany);
     void removalInRow(const casali::maPosition &pos, unsigned howMany);
     void switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2);
+    void switch2posRow(const casali::maPosition &pos1, const casali::maPosition &pos2);
 };
 
 #endif

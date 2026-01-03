@@ -4,6 +4,46 @@
 
 using std::cout, casali::maPosition;
 
+void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2)
+{
+    size_t index(pos2.ord * n + pos1.abs);
+    size_t indexFinal(pos1.ord * n + pos1.abs);
+
+    for (; index > indexFinal;)
+    {
+        std::swap(m[index], m[index - n]);
+        index -= n;
+    }
+}
+
+void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
+{
+
+    for (size_t i(0); i < howMany; ++i)
+    {
+        maPosition topOfColumn{pos.abs, 0};
+        m[pos.ord * n + pos.abs] = KImpossible;
+        switch2posColumn(topOfColumn, pos);
+    }
+}
+
+void Matrix::removalInRow(const maPosition &pos, unsigned howMany)
+{
+
+    for (size_t i = 0; i < howMany; ++i)
+    {
+        unsigned currentAbs = pos.abs + i;
+
+        maPosition holePos = {currentAbs, pos.ord};
+        maPosition topOfThisColumn = {currentAbs, 0};
+
+        m[pos.ord * n + currentAbs] = KImpossible;
+
+        switch2posColumn(topOfThisColumn, holePos);
+    }
+}
+
+
 bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howMany) const
 {
     size_t startY(0);
@@ -42,14 +82,6 @@ bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howM
     }
 
     return false;
-}
-
-void Matrix::removalInColumn(maPosition &pos, unsigned howMany)
-{
-    for (size_t y = pos.ord; y < pos.ord + howMany; ++y)
-    {
-        at(pos.abs, y) = 0;
-    }
 }
 
 bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany) const
@@ -91,14 +123,6 @@ bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany
     }
 
     return false;
-}
-
-void Matrix::removalInRow(maPosition &pos, unsigned howMany)
-{
-    for (size_t x = pos.abs; x < pos.abs + howMany; ++x)
-    {
-        at(x, pos.ord) = 0;
-    }
 }
 
 void Matrix::reffill(int n)
@@ -159,7 +183,9 @@ void Matrix::displayGrid() const
     {
         std::cout << '|';
         for (size_t x(0); x < n; ++x)
+            casali::couleur(colorMap[m[y * n + x]]),
             cout << std::setw(2) << m[y * n + x] << ' ';
+            casali::couleur(KReset);
         cout << "|\n";
     }
 }

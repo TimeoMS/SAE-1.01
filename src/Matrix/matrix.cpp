@@ -9,7 +9,7 @@ using std::cout, casali::maPosition;
 Matrix::Matrix(size_t size) : n(size), m(size * size)
 {
     for (size_t i(0); i < m.size(); ++i)
-        m[i] = rand() % KNbCandies;
+        m[i] = 1 + rand() % KNbCandies;
 };
 
 bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howMany) const
@@ -93,6 +93,24 @@ bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany
     return false;
 }
 
+void Matrix::reffill(int n)
+{
+    for (size_t x(0); x < n; ++x) {
+        for (size_t y(n - 1); y < n; --y) {
+            if (at(x, y) == 0) {
+                size_t k = y;
+                while (k > 0 && at(x, k) == 0)
+                    k--;
+                if (k == 0 && at(x, k) == 0) {
+                    at(x, y) = rand() % (KNbCandies - 1) + 1;
+                } else {
+                    std::swap(at(x, y), at(x, k));
+                }
+            }
+        }
+    }
+}
+
 void Matrix::makeAMove(const maPosition &pos, char direction)
 {
 
@@ -133,7 +151,9 @@ void Matrix::displayGrid() const
     {
         std::cout << '|';
         for (size_t x(0); x < n; ++x)
+            casali::couleur(colorMap[m[y * n + x]]),
             cout << std::setw(2) << m[y * n + x] << ' ';
+            casali::couleur(KReset);
         cout << "|\n";
     }
 }

@@ -23,14 +23,14 @@ int main(int argc, const char *argv[])
         casali::maPosition pos{0, 0};
         unsigned count(0);
         for (size_t x(0); x < 6; ++x)
-            if (m.atLeastThreeInARowFrom(x, pos, count))
+            if (m.atLeastThreeInARowFrom(x, pos, count) && count >= 5)
             {
+                exit = true;
                 std::cout << "---------------------\n";
                 m.displayGrid();
                 std::cout << "---------------------\n";
                 m.removalInRow(pos, count);
                 m.displayGrid();
-                exit = true;
             }
     }
 

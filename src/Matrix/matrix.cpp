@@ -1,48 +1,16 @@
 #include "matrix.h"
+#include "../constants.h"
 #include <iostream>
 #include <iomanip>
+#include <random>
 
 using std::cout, casali::maPosition;
 
-void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2)
+Matrix::Matrix(size_t size) : n(size), m(size * size)
 {
-    size_t index(pos2.ord * n + pos1.abs);
-    size_t indexFinal(pos1.ord * n + pos1.abs);
-
-    for (; index > indexFinal;)
-    {
-        std::swap(m[index], m[index - n]);
-        index -= n;
-    }
-}
-
-void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
-{
-
-    for (size_t i(0); i < howMany; ++i)
-    {
-        maPosition topOfColumn{pos.abs, 0};
-        m[pos.ord * n + pos.abs] = KImpossible;
-        switch2posColumn(topOfColumn, pos);
-    }
-}
-
-void Matrix::removalInRow(const maPosition &pos, unsigned howMany)
-{
-
-    for (size_t i = 0; i < howMany; ++i)
-    {
-        unsigned currentAbs = pos.abs + i;
-
-        maPosition holePos = {currentAbs, pos.ord};
-        maPosition topOfThisColumn = {currentAbs, 0};
-
-        m[pos.ord * n + currentAbs] = KImpossible;
-
-        switch2posColumn(topOfThisColumn, holePos);
-    }
-}
-
+    for (size_t i(0); i < m.size(); ++i)
+        m[i] = 1 + rand() % KNbCandies;
+};
 
 bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howMany) const
 {
@@ -187,5 +155,44 @@ void Matrix::displayGrid() const
             cout << std::setw(2) << m[y * n + x] << ' ';
             casali::couleur(KReset);
         cout << "|\n";
+    }
+}
+
+void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2)
+{
+    size_t index(pos2.ord * n + pos1.abs);
+    size_t indexFinal(pos1.ord * n + pos1.abs);
+
+    for (; index > indexFinal;)
+    {
+        std::swap(m[index], m[index - n]);
+        index -= n;
+    }
+}
+
+void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
+{
+
+    for (size_t i(0); i < howMany; ++i)
+    {
+        maPosition topOfColumn{pos.abs, 0};
+        m[pos.ord * n + pos.abs] = KImpossible;
+        switch2posColumn(topOfColumn, pos);
+    }
+}
+
+void Matrix::removalInRow(const maPosition &pos, unsigned howMany)
+{
+
+    for (size_t i = 0; i < howMany; ++i)
+    {
+        unsigned currentAbs = pos.abs + i;
+
+        maPosition holePos = {currentAbs, pos.ord};
+        maPosition topOfThisColumn = {currentAbs, 0};
+
+        m[pos.ord * n + currentAbs] = KImpossible;
+
+        switch2posColumn(topOfThisColumn, holePos);
     }
 }

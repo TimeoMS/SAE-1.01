@@ -38,8 +38,11 @@ brew install ncurses
 ### Linux
 
 ```bash
-apt install ncurses -y
+apt install libncurses-dev -y
 ```
+
+### Windows
+Changez d'OS.
 
 ## Build
 
@@ -49,7 +52,7 @@ apt install ncurses -y
 # Crée un dossier build et s'y rendre
 mkdir build
 cd build
-# Crée le build cmake en Debug avec Makefile, si vous êtes sur Windows c'est "MinGW Makefiles"
+# Crée le build cmake en Debug avec Makefile
 cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug
 # Permet de compiler le projet
 make

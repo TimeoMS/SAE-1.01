@@ -49,6 +49,8 @@ void candyCrush(int n)
     Matrix m(n);
     int score(0);
 
+    bool exit(false);
+
     for (;;)
     {
         casali::maPosition pos{0, 0};

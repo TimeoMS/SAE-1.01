@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include "Casali/casali.h"
-#include "../constants.h"
 
 struct Matrix // Pour l'optimisation
 {
@@ -12,11 +11,7 @@ struct Matrix // Pour l'optimisation
     size_t n;
     std::vector<unsigned> m;
 
-    Matrix(size_t size) : n(size), m(size * size)
-    {
-        for (size_t i(0); i < m.size(); ++i)
-            m[i] = 1 + std::rand() % KNbCandies;
-    };
+    Matrix(size_t size);
 
     void displayGrid() const;
 

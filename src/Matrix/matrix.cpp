@@ -6,12 +6,22 @@
 
 using std::cout, casali::maPosition;
 
+/**
+ * @brief genere une matrice 1D avec des chiffre aléatoire
+ * 
+ *  */
 Matrix::Matrix(size_t size) : n(size), m(size * size)
 {
     for (size_t i(0); i < m.size(); ++i)
         m[i] = 1 + rand() % KNbCandies;
 };
 
+/**
+ * @brief recherche un triplé ou plus en colonne dans une matrice
+ * @param x, pos, howmany
+ * 
+ * x et la position ou chercher pos est ou sauvegarder la position exacte et howmany et le nombre exact de chiffre identique
+ *  */
 bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howMany) const
 {
     size_t startY(0);
@@ -52,6 +62,12 @@ bool Matrix::atLeastThreeInAColumnFrom(size_t x, maPosition &pos, unsigned &howM
     return false;
 }
 
+/**
+ * @brief recherche un triplé ou plus en ligne dans une matrice
+ * @param y, pos, howmany
+ * 
+ * y et la position ou chercher pos est ou sauvegarder la position exacte et howmany et le nombre exact de chiffre identique
+ *  */
 bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany) const
 {
 
@@ -93,6 +109,12 @@ bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany
     return false;
 }
 
+/**
+ * @brief fait tomber les "bonbon" et en genere d'autre en haut
+ * @param n
+ * 
+ * n est la taille de la matrice
+ *  */
 void Matrix::reffill(int n)
 {
     for (size_t x(0); x < n; ++x) {
@@ -111,6 +133,12 @@ void Matrix::reffill(int n)
     }
 }
 
+/**
+ * @brief permet de changer les posisiont de deux element d'une matrice en fonction de l'imput joueur
+ * @param pos, direction
+ * 
+ * pos est la position de l'element a échangé et direction est vers ou l'envoyé
+ *  */
 void Matrix::makeAMove(const maPosition &pos, char direction)
 {
 
@@ -142,6 +170,10 @@ void Matrix::makeAMove(const maPosition &pos, char direction)
     std::swap(at(pos), at(targetAbs, targetOrd));
 }
 
+/**
+ * @brief affiche une matrice coloré en foction des chiffre la composant
+ * 
+ *  */
 void Matrix::displayGrid() const
 {
     casali::clearScreen();
@@ -158,6 +190,12 @@ void Matrix::displayGrid() const
     }
 }
 
+/**
+ * @brief echange la position de deux element
+ * @param pos1, pos2
+ * 
+ * les pos sont les position a échanger
+ *  */
 void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2)
 {
     size_t index(pos2.ord * n + pos1.abs);
@@ -170,6 +208,12 @@ void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPo
     }
 }
 
+/**
+ * @brief supprime les élément dans une colonne
+ * @param pos, howMany
+ * 
+ * les pos sont les position a échanger
+ *  */
 void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
 {
 
@@ -181,6 +225,12 @@ void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
     }
 }
 
+/**
+ * @brief supprime les élément dans une ligne
+ * @param pos, howMany
+ * 
+ * les pos sont les position a échanger
+ *  */
 void Matrix::removalInRow(const maPosition &pos, unsigned howMany)
 {
 

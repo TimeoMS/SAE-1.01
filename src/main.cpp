@@ -13,6 +13,11 @@ void *operator new(size_t size)
 }
 #endif
 
+/**
+ * @brief stocke et compare le score du joueur et le highscore
+ * @param score
+ * 
+ *  */
 void checkscore(int score)
 {
     std::ifstream file("highscore.txt");
@@ -43,6 +48,11 @@ void checkscore(int score)
     file.close();
 }
 
+/**
+ * @brief lance le mode de jeux de base avec une matrice de taille n
+ * @param n
+ * 
+ *  */
 void candyCrush(int n)
 {
     srand(time(0));
@@ -88,6 +98,11 @@ void candyCrush(int n)
     checkscore(score);
 }
 
+/**
+ * @brief deuxiéme partie du mode versus qui fait jouer un joueur
+ * @param j, score, n, numplayer
+ * 
+ *  */
 int candyCrushVersus(Matrix &j, int &score, int n, int numplayer)
 {
     casali::maPosition pos{0, 0};
@@ -124,6 +139,11 @@ int candyCrushVersus(Matrix &j, int &score, int n, int numplayer)
     return 1;
 }
 
+/**
+ * @brief lance le mode de jeux versus avec des matrice de taille n
+ * @param n
+ * 
+ *  */
 void candyCrushVersusLaunch(int n)
 {
     srand(time(0));
@@ -137,16 +157,15 @@ void candyCrushVersusLaunch(int n)
     {
         if (playerOneTurn){
             if (!candyCrushVersus(j1, scorej1, n, 1))
-                goto endgame;
+                break;
             playerOneTurn = false;
         } else {
             if (!candyCrushVersus(j2, scorej2, n, 2))
-                goto endgame;
+                break;
             playerOneTurn = true;
         }
     }
-    endgame:
-        std::cout << "Final Scores:\nPlayer 1: " << scorej1 << "\nPlayer 2: " << scorej2 << '\n';
+    std::cout << "Final Scores:\nPlayer 1: " << scorej1 << "\nPlayer 2: " << scorej2 << '\n';
 }
 
 int main(int argc, const char *argv[])

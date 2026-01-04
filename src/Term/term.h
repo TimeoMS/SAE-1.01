@@ -13,40 +13,6 @@ struct rect {
 	int bottom;
 };
 
-union col_rgb;
-
-struct col_yuv {
-	double y = 0.0;
-	double u = 0.0;
-	double v = 0.0;
-
-	operator col_rgb() const;
-
-	inline bool operator==(col_yuv const &yuv) const {
-		return y == yuv.y && u == yuv.u && v == yuv.v;
-	}
-
-	inline bool operator!=(col_yuv const &yuv) const { return !(*this == yuv); }
-};
-
-union col_rgb {
-	uint32_t rgb = 0;
-	struct {
-		uint8_t r;
-		uint8_t g;
-		uint8_t b;
-		uint8_t unused;
-	};
-
-	operator col_yuv() const;
-
-	inline bool operator==(col_rgb const &rgb) const {
-		return r == rgb.r && g == rgb.g && b == rgb.b;
-	}
-
-	inline bool operator!=(col_rgb const &rgb) const { return !(*this == rgb); }
-};
-
 struct cell_props {
 	attr_t attrs      = A_NORMAL;
 	short  color_pair = 0;
@@ -57,28 +23,16 @@ struct cell_props {
 };
 
 struct cell {
-	chtype  glyph = ' ';
-	attr_t  attrs = A_NORMAL;
-	col_rgb fg;
-	col_rgb bg;
+	chtype glyph      = ' ';
+	attr_t attrs      = A_NORMAL;
+	short  color_pair = 0;
 
 	cell(chtype glyph)
 		: glyph(glyph & A_CHARTEXT), attrs(glyph & A_ATTRIBUTES) {}
-	cell(chtype glyph, attr_t attrs, col_rgb fg)
-		: glyph(glyph), attrs(attrs), fg(fg) {}
-	cell(chtype glyph, attr_t attrs, col_rgb fg, col_rgb bg)
-		: glyph(glyph), attrs(attrs), fg(fg), bg(bg) {}
-};
-
-class cell_renderer {
-  private:
-	std::vector<double>  score_buffer;
-	std::vector<col_yuv> yuv_buffer;
-
-  public:
-	std::vector<cell> glyph_buf;
-
-	void render(std::vector<chtype> &output);
+	cell(chtype glyph, cell_props props)
+		: glyph(glyph), attrs(props.attrs), color_pair(props.color_pair) {}
+	cell(chtype glyph, attr_t attrs, short color_pair)
+		: glyph(glyph), attrs(attrs), color_pair(color_pair) {}
 };
 
 class window;
@@ -94,7 +48,7 @@ class screen {
 	unsigned dirty_r = 0;
 	unsigned dirty_b = 0;
 
-	cell_renderer renderer;
+	std::vector<cell> glyph_buf;
 
   public:
 	std::vector<window> window_list;
@@ -118,39 +72,43 @@ class window {
 	unsigned width;
 	unsigned height;
 
-	unsigned padding_x;
-	unsigned padding_y;
-	bool     maximized;
-	bool     bordered;
+	unsigned padding_x = 0;
+	unsigned padding_y = 0;
+	bool     maximized = false;
+	bool     bordered  = true;
 
-	unsigned cursor_x;
-	unsigned cursor_y;
+	unsigned cursor_x = 0;
+	unsigned cursor_y = 0;
 
 	std::vector<cell> glyph_buf;
 
   public:
-	attr_t  attrs = A_NORMAL;
-	col_rgb fg;
-	col_rgb bg;
-	col_rgb border_fg;
-	col_rgb border_bg;
+	cell_props props;
 
 	window(screen const &scr, std::string name, int x, int y, unsigned width,
 	       unsigned height);
 
 	std::string get_name() const { return name; }
 
-	int get_position_x() const { return padding_x + bordered + !maximized * x; }
-	int get_position_y() const { return padding_y + bordered + !maximized * y; }
-	unsigned get_width() const {
-		return std::max(maximized ? scr.get_width() : width,
-		                padding_x + bordered) -
-		       padding_x + bordered;
+	unsigned get_outer_x() const { return !maximized * x; }
+	unsigned get_outer_y() const { return !maximized * y; }
+
+	unsigned get_outer_width() const {
+		return maximized ? scr.get_width() : width;
 	}
-	unsigned get_height() const {
-		return std::max(maximized ? scr.get_height() : height,
-		                padding_y + bordered) -
-		       padding_y + bordered;
+	unsigned get_outer_height() const {
+		return maximized ? scr.get_height() : height;
+	}
+
+	int get_inner_x() const { return padding_x + bordered + get_outer_x(); }
+	int get_inner_y() const { return padding_y + bordered + get_outer_y(); }
+	unsigned get_inner_width() const {
+		return std::max(get_outer_width(), (padding_x + bordered) * 2) -
+		       (padding_x + bordered) * 2;
+	}
+	unsigned get_inner_height() const {
+		return std::max(get_outer_height(), (padding_y + bordered) * 2) -
+		       (padding_y + bordered) * 2;
 	}
 
 	unsigned get_padding_x() const { return padding_x; }
@@ -158,8 +116,8 @@ class window {
 	bool     is_maximized() const { return maximized; }
 	bool     is_bordered() const { return bordered; }
 
-	unsigned get_cursor_x() const { return cursor_x - padding_x; }
-	unsigned get_cursor_y() const { return cursor_y - padding_y; }
+	unsigned get_cursor_x() const { return cursor_x; }
+	unsigned get_cursor_y() const { return cursor_y; }
 
 	std::vector<cell> const &get_buffer() const { return glyph_buf; }
 
@@ -189,8 +147,10 @@ class window {
 
 	void clear();
 	void print(std::string const &s, attr_t attrs = A_NORMAL,
-	           col_rgb fg = col_rgb(), col_rgb bg = col_rgb());
+	           short color_pair = 0);
 };
+
+class ui_node {};
 
 void init();
 void set_interactive(bool interactive);

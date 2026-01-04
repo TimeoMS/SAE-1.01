@@ -20,15 +20,12 @@ int main(int argc, const char *argv[]) {
 
 	term::screen screen;
 
-	term::window testwin(screen, "test window", 5, 4, 12, 7);
-	testwin.border_bg.rgb = 0;
-	testwin.border_fg.rgb = 0xff;
+	term::window testwin(screen, "test window", 4, 4, 12, 9);
 	testwin.set_maximized(false);
 	testwin.set_padding(2, 1);
 	testwin.print("hello world");
 
-	term::window testwin2(screen, "test window 2", 15, 18, 15, 4);
-	testwin2.bg.rgb = 0xf00000;
+	term::window testwin2(screen, "test window 2", 10, 9, 15, 7);
 	testwin2.print("mafieux");
 
 	screen.window_list.push_back(testwin);

@@ -1,0 +1,20 @@
+<map id="casali::couleur" name="casali::couleur">
+<area shape="rect" id="Node000001" title="change la couleur du texte écrit dans stdout" alt="" coords="756,56,872,81"/>
+<area shape="rect" id="Node000002" href="$structMatrix.html#aae50c433d5d4ac0c161ad3d10ecf0306" title="affiche une matrice coloré en foction des chiffre la composant" alt="" coords="561,31,708,56"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="742,61,708,56,709,51,743,56"/>
+<area shape="rect" id="Node000003" href="$namespaceGameModes.html#a8d1b3487d9144130c538093f1aaaab6e" title=" " alt="" coords="355,5,513,31"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="780,51,746,34,707,21,658,12,607,9,513,12,513,6,607,4,658,7,709,15,748,29,783,47"/>
+<area shape="rect" id="Node000005" href="$namespaceGameModes.html#ae3b2867f40addea8191e2d19908d17af" title=" " alt="" coords="355,56,513,81"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="742,71,513,71,513,66,742,66"/>
+<area shape="rect" id="Node000006" href="$gamemodes_8cpp.html#adc2afa1c255be68cb9bbaabb737fb9ed" title=" " alt="" coords="401,107,467,132"/>
+<area shape="poly" id="edge11_Node000001_Node000006" title=" " alt="" coords="743,81,467,118,467,112,742,75"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="548,35,513,31,513,25,548,30"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="548,57,514,61,513,56,548,52"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="592,64,514,95,468,112,466,107,512,90,590,59"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title=" " alt="" coords="5,56,60,81"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="342,26,230,36,108,53,61,64,60,58,108,47,229,31,341,21"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="341,71,60,71,60,66,341,66"/>
+<area shape="rect" id="Node000007" href="$namespaceGameModes.html#a6c3284943092702060817a4c597f2075" title=" " alt="" coords="108,107,307,132"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="387,122,307,122,307,117,387,117"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="149,105,59,79,61,74,150,100"/>
+</map>

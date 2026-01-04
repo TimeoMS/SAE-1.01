@@ -1,0 +1,13 @@
+<map id="term::screen::render" name="term::screen::render">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,104,160,129"/>
+<area shape="rect" id="Node000002" href="$classterm_1_1window.html#a7524a9536b54ac3da17834ab0135bbd9" title=" " alt="" coords="221,5,408,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,102,147,71,207,40,229,32,231,37,209,44,149,75,103,106"/>
+<area shape="rect" id="Node000003" href="$classterm_1_1window.html#ae9ccc70d2e97a13e567bf55e5d6c5ee2" title=" " alt="" coords="208,55,421,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="142,101,240,80,241,86,144,107"/>
+<area shape="rect" id="Node000004" href="$classterm_1_1window.html#a4d0bffe0d4b1490de197288c8aa78c10" title=" " alt="" coords="208,104,421,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="160,114,194,114,194,119,160,119"/>
+<area shape="rect" id="Node000005" href="$classterm_1_1window.html#a45eed35b75e468f8948ac25ab9e6d195" title=" " alt="" coords="223,153,406,179"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="144,127,241,148,240,153,142,132"/>
+<area shape="rect" id="Node000006" href="$classterm_1_1window.html#af3cf0e23552e5565cae5adb25a903062" title=" " alt="" coords="217,203,412,228"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="103,127,150,157,209,188,235,196,233,202,207,192,147,162,100,132"/>
+</map>

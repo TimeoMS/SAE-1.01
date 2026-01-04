@@ -1,0 +1,12 @@
+<map id="Matrix::Matrix" name="Matrix::Matrix">
+<area shape="rect" id="Node000001" title="genere une matrice 1D avec des chiffre aléatoire sans triplet" alt="" coords="5,55,120,80"/>
+<area shape="rect" id="Node000002" href="$structMatrix.html#af5b73d24f59c38eaf1310c4d71a363b8" title="recherche un triplé ou plus en colonne dans une matrice" alt="" coords="168,5,429,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,52,167,39,211,31,212,36,169,45,114,57"/>
+<area shape="rect" id="Node000004" href="$structMatrix.html#afc2607264eb3f6ffffb8cc4a7d5edda5" title="recherche un triplé ou plus en ligne dans une matrice" alt="" coords="179,55,418,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="120,65,166,65,166,70,120,70"/>
+<area shape="rect" id="Node000005" href="$constants_8h.html#ae8bee0a74fdc4f9d5cf09ed77e6fa708" title=" " alt="" coords="248,104,349,129"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="118,77,169,89,235,102,234,107,167,94,117,83"/>
+<area shape="rect" id="Node000003" href="$constants_8h.html#a75c82af712bb4356022877b992f0520e" title=" " alt="" coords="477,31,580,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="415,28,464,34,463,39,414,33"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="418,52,463,47,464,53,419,57"/>
+</map>

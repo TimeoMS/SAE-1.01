@@ -1,0 +1,11 @@
+<map id="KNbCandies" name="KNbCandies">
+<area shape="rect" id="Node000001" title=" " alt="" coords="476,31,577,56"/>
+<area shape="rect" id="Node000002" href="$structMatrix.html#a442e02d4da069ad8e5fdc9d945e904bc" title="genere une matrice 1D avec des chiffre aléatoire sans triplet" alt="" coords="313,5,428,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="462,36,428,30,429,25,463,30"/>
+<area shape="rect" id="Node000003" href="$structMatrix.html#a870c6e8e4c540f8eeb2032c8bb8ddcd7" title="remplit les case contenant kimpossiblr de la matrice" alt="" coords="320,55,421,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="463,56,422,62,421,57,462,51"/>
+<area shape="rect" id="Node000004" href="$namespaceGameModes.html#a8d1b3487d9144130c538093f1aaaab6e" title=" " alt="" coords="108,55,265,80"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="306,70,265,70,265,65,306,65"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title=" " alt="" coords="5,55,60,80"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="94,70,60,70,60,65,94,65"/>
+</map>

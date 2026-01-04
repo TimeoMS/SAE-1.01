@@ -1,0 +1,40 @@
+<map id="GameModes::infinite" name="GameModes::infinite">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,253,163,279"/>
+<area shape="rect" id="Node000002" href="$structMatrix.html#af5b73d24f59c38eaf1310c4d71a363b8" title="recherche un triplé ou plus en colonne dans une matrice" alt="" coords="211,104,472,129"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,252,137,196,171,164,209,138,224,131,227,136,212,143,174,169,141,200,96,255"/>
+<area shape="rect" id="Node000004" href="$structMatrix.html#afc2607264eb3f6ffffb8cc4a7d5edda5" title="recherche un triplé ou plus en ligne dans une matrice" alt="" coords="222,55,461,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="88,252,103,219,129,174,164,128,186,107,209,89,220,83,222,88,212,94,189,111,168,131,134,177,108,221,93,254"/>
+<area shape="rect" id="Node000005" href="$namespacecasali.html#a247ac1bf620cb3d7de93c19ec5a76883" title="change la couleur du texte écrit dans stdout" alt="" coords="559,279,675,304"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="163,267,546,285,546,291,163,272"/>
+<area shape="rect" id="Node000006" href="$structMatrix.html#aae50c433d5d4ac0c161ad3d10ecf0306" title="affiche une matrice coloré en foction des chiffre la composant" alt="" coords="268,304,415,329"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="150,276,263,299,262,304,149,281"/>
+<area shape="rect" id="Node000007" href="$constants_8h.html#abd1e4bc2fb20376e0efbffc56978e32a" title=" " alt="" coords="583,341,651,367"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="102,277,149,309,179,326,211,338,260,350,309,358,409,364,499,363,570,357,570,362,499,368,409,370,309,363,259,355,210,343,177,331,146,314,99,281"/>
+<area shape="rect" id="Node000008" href="$constants_8h.html#acb764ca9afa81878cc553da9746f34eb" title=" " alt="" coords="305,405,377,431"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="97,277,143,329,175,359,212,384,252,400,292,410,291,415,250,405,209,388,172,363,139,333,93,281"/>
+<area shape="rect" id="Node000009" href="$structMatrix.html#a63624453e0d3bbf2bac632996cce9b11" title="permet de changer les posisiont de deux element d&#39;une matrice en fonction de l&#39;imput joueur" alt="" coords="265,455,418,480"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="93,278,108,312,133,356,168,403,189,424,212,441,252,458,250,463,209,446,186,428,164,406,129,359,103,314,88,280"/>
+<area shape="rect" id="Node000011" href="$gamemodes_8cpp.html#a6bda0841bc460b491da7dda80194fb6e" title=" " alt="" coords="299,504,383,529"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="91,278,103,320,127,378,162,440,186,467,212,490,248,507,286,514,285,520,246,512,209,495,182,471,158,443,122,381,98,322,86,280"/>
+<area shape="rect" id="Node000012" href="$structMatrix.html#a870c6e8e4c540f8eeb2032c8bb8ddcd7" title="remplit les case contenant kimpossiblr de la matrice" alt="" coords="291,5,392,31"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="86,253,98,211,122,153,158,91,182,63,209,40,242,24,276,16,277,21,243,29,212,44,186,67,163,94,127,155,103,213,91,254"/>
+<area shape="rect" id="Node000014" href="$structMatrix.html#a235c08fd31d70da115f62636a1657890" title="supprime les élément dans une colonne" alt="" coords="247,203,435,228"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="149,251,262,228,263,233,150,256"/>
+<area shape="rect" id="Node000016" href="$structMatrix.html#a2a3e034555955a898bf1003002a6ec4a" title="supprime les élément dans une ligne" alt="" coords="258,153,425,179"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="101,251,148,219,210,188,244,177,245,182,212,192,151,223,104,255"/>
+<area shape="rect" id="Node000003" href="$constants_8h.html#a75c82af712bb4356022877b992f0520e" title=" " alt="" coords="566,104,669,129"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="472,114,552,114,552,119,472,119"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="414,77,553,103,552,108,413,83"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="415,307,545,295,546,301,415,313"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="415,324,570,345,569,350,414,329"/>
+<area shape="rect" id="Node000010" href="$structMatrix.html#aa09be19b8b8907e9b056826f31fa0757" title="cherche un emplacement 1D a partir de coordonée 2D" alt="" coords="575,455,660,480"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="418,465,560,465,560,470,418,470"/>
+<area shape="poly" id="edge15_Node000012_Node000003" title=" " alt="" coords="393,21,432,28,473,39,534,66,586,94,583,99,532,71,471,45,431,34,392,26"/>
+<area shape="rect" id="Node000013" href="$constants_8h.html#ae8bee0a74fdc4f9d5cf09ed77e6fa708" title=" " alt="" coords="567,5,668,31"/>
+<area shape="poly" id="edge16_Node000012_Node000013" title=" " alt="" coords="392,15,552,15,552,21,392,21"/>
+<area shape="poly" id="edge18_Node000014_Node000003" title=" " alt="" coords="425,200,471,188,578,133,580,138,473,192,426,205"/>
+<area shape="rect" id="Node000015" href="$structMatrix.html#a6bf24a0191176ab0cb6d553ae09509b4" title="echange la position de deux element" alt="" coords="520,179,715,204"/>
+<area shape="poly" id="edge19_Node000014_Node000015" title=" " alt="" coords="435,205,506,198,506,204,436,210"/>
+<area shape="poly" id="edge21_Node000016_Node000003" title=" " alt="" coords="413,151,552,126,553,131,414,156"/>
+<area shape="poly" id="edge22_Node000016_Node000015" title=" " alt="" coords="425,171,506,178,506,184,424,176"/>
+</map>

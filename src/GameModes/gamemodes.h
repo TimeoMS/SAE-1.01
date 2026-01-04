@@ -1,0 +1,4 @@
+namespace GameModes
+{
+    void normal();
+}

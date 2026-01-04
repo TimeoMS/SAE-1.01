@@ -11,7 +11,6 @@ bool readInput(size_t &x, size_t &y, char &direction)
 
     std::istringstream iss(line);
 
-    // Correction ici :
     if (iss >> x >> y >> direction)
     {
         return true;
@@ -49,26 +48,38 @@ void GameModes::normal()
 
         m.makeAMove({x, y}, direction);
 
-        casali::maPosition pos{0, 0};
+        bool comboFound;
 
-        for (size_t x(0); x < m.n; ++x)
+        do
         {
-            unsigned howMany(0);
-            if (m.atLeastThreeInAColumnFrom(x, pos, howMany))
-            {
-                score += howMany;
-                m.removalInColumn(pos, howMany);
-            }
-        }
+            casali::maPosition pos{0, 0};
+            comboFound = false;
 
-        for (size_t x(0); x < m.n; ++x)
-        {
-            unsigned howMany(0);
-            if (m.atLeastThreeInARowFrom(x, pos, howMany))
+            for (size_t col(0); col < m.n; ++col)
             {
-                score += howMany;
-                m.removalInRow(pos, howMany);
+                unsigned howMany(0);
+                if (m.atLeastThreeInAColumnFrom(col, pos, howMany))
+                {
+                    score += howMany;
+                    m.removalInColumn(pos, howMany);
+                    comboFound = true;
+                }
             }
-        }
+
+            for (size_t row(0); row < m.n; ++row)
+            {
+                unsigned howMany(0);
+                if (m.atLeastThreeInARowFrom(row, pos, howMany))
+                {
+                    score += howMany;
+                    m.removalInRow(pos, howMany);
+                    comboFound = true;
+                }
+            }
+
+            if (comboFound)
+                std::cout << "Combo ! Score actuel: " << score << "\n";
+
+        } while (comboFound);
     }
 }

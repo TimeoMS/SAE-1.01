@@ -98,7 +98,7 @@ bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany
     for (size_t x(1); x < n; ++x)
     {
         unsigned currentVal = m[index];
-        if (previousVal == currentVal)
+        if (previousVal == currentVal && currentVal != KImpossible)
             ++count;
         else
         {
@@ -125,36 +125,6 @@ bool Matrix::atLeastThreeInARowFrom(size_t y, maPosition &pos, unsigned &howMany
     }
 
     return false;
-}
-
-/**
- * @brief fait tomber les "bonbon" et en genere d'autre en haut
- * @param n
- *
- * n est la taille de la matrice
- *  */
-void Matrix::reffill(int n)
-{
-    for (size_t x(0); x < n; ++x)
-    {
-        for (size_t y(n - 1); y < n; --y)
-        {
-            if (at(x, y) == 0)
-            {
-                size_t k = y;
-                while (k > 0 && at(x, k) == 0)
-                    k--;
-                if (k == 0 && at(x, k) == 0)
-                {
-                    at(x, y) = rand() % (KNbCandies - 1) + 1;
-                }
-                else
-                {
-                    std::swap(at(x, y), at(x, k));
-                }
-            }
-        }
-    }
 }
 
 /**
@@ -201,7 +171,7 @@ void Matrix::makeAMove(const maPosition &pos, char direction)
 void Matrix::displayGrid() const
 {
     casali::couleur(KReset);
-
+    cout << "--------------\n";
     for (size_t y(0); y < n; ++y)
     {
         std::cout << '|';
@@ -242,9 +212,13 @@ void Matrix::removalInColumn(const maPosition &pos, unsigned howMany)
 
     for (size_t i(0); i < howMany; ++i)
     {
-        maPosition topOfColumn{pos.abs, 0};
-        m[pos.ord * n + pos.abs] = KImpossible;
-        switch2posColumn(topOfColumn, pos);
+        unsigned currentOrd = pos.ord + i;
+
+        maPosition holePos = {pos.abs, currentOrd};
+        maPosition topOfThisColumn = {pos.abs, 0};
+
+        m[currentOrd * n + pos.abs] = KImpossible;
+        switch2posColumn(topOfThisColumn, holePos);
     }
 }
 

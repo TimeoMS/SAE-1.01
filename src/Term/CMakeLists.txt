@@ -10,6 +10,6 @@ set(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED) 
 
 # 4. Création et liaison
-add_library(Term SHARED term.cpp)
-target_link_libraries(Term PRIVATE ${CURSES_LIBRARIES})
+add_library(Term STATIC term.cpp)
+target_link_libraries(Term PUBLIC ${CURSES_LIBRARIES})
 target_include_directories(Term PRIVATE ${CURSES_INCLUDE_DIRS})

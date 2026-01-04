@@ -5,125 +5,194 @@
 
 #include <ncurses.h>
 
-namespace term
-{
-	union cell
-	{
-		cell() : c(' ') {}
-		cell(chtype c) : c(c) {}
-		cell(char ch, attr_t attrs, short color_pair)
-			: ch(ch), attrs(attrs), color_pair(color_pair) {}
+namespace term {
+struct rect {
+	int left;
+	int top;
+	int right;
+	int bottom;
+};
 
-		operator chtype() const { return c; }
+union col_rgb;
 
-		chtype c;
-		struct
-		{
-			char ch;
-			attr_t attrs;
-			short color_pair;
-		};
+struct col_yuv {
+	double y = 0.0;
+	double u = 0.0;
+	double v = 0.0;
+
+	operator col_rgb() const;
+
+	inline bool operator==(col_yuv const &yuv) const {
+		return y == yuv.y && u == yuv.u && v == yuv.v;
+	}
+
+	inline bool operator!=(col_yuv const &yuv) const { return !(*this == yuv); }
+};
+
+union col_rgb {
+	uint32_t rgb = 0;
+	struct {
+		uint8_t r;
+		uint8_t g;
+		uint8_t b;
+		uint8_t unused;
 	};
 
-	class window
-	{
-	private:
-		std::string name;
+	operator col_yuv() const;
 
-		int x;
-		int y;
-		unsigned width;
-		unsigned height;
+	inline bool operator==(col_rgb const &rgb) const {
+		return r == rgb.r && g == rgb.g && b == rgb.b;
+	}
 
-		unsigned padding_x;
-		unsigned padding_y;
-		bool maximized;
-		bool bordered;
+	inline bool operator!=(col_rgb const &rgb) const { return !(*this == rgb); }
+};
 
-		unsigned cursor_x;
-		unsigned cursor_y;
+struct cell_props {
+	attr_t attrs      = A_NORMAL;
+	short  color_pair = 0;
 
-		std::vector<cell> buffer;
+	cell_props() : attrs(A_NORMAL), color_pair(0) {}
+	cell_props(attr_t attrs, short color_pair)
+		: attrs(attrs), color_pair(color_pair) {}
+};
 
-	public:
-		window(std::string name, int x, int y, unsigned width, unsigned height,
-			   unsigned padding_x = 0, unsigned padding_y = 0,
-			   bool maximized = false, bool bordered = true);
+struct cell {
+	chtype  glyph = ' ';
+	attr_t  attrs = A_NORMAL;
+	col_rgb fg;
+	col_rgb bg;
 
-		std::string get_name() const { return name; }
+	cell(chtype glyph)
+		: glyph(glyph & A_CHARTEXT), attrs(glyph & A_ATTRIBUTES) {}
+	cell(chtype glyph, attr_t attrs, col_rgb fg)
+		: glyph(glyph), attrs(attrs), fg(fg) {}
+	cell(chtype glyph, attr_t attrs, col_rgb fg, col_rgb bg)
+		: glyph(glyph), attrs(attrs), fg(fg), bg(bg) {}
+};
 
-		int get_position_x() const { return x; }
-		int get_position_y() const { return y; }
-		unsigned get_width() const { return width; }
-		unsigned get_height() const { return height; }
+class cell_renderer {
+  private:
+	std::vector<double>  score_buffer;
+	std::vector<col_yuv> yuv_buffer;
 
-		unsigned get_padding_x() const { return padding_x; }
-		unsigned get_padding_y() const { return padding_y; }
-		bool is_maximized() const { return maximized; }
-		bool is_bordered() const { return bordered; }
+  public:
+	std::vector<cell> glyph_buf;
 
-		unsigned get_cursor_x() const { return cursor_x - padding_x; }
-		unsigned get_cursor_y() const { return cursor_y - padding_y; }
+	void render(std::vector<chtype> &output);
+};
 
-		std::vector<cell> const &get_buffer() const { return buffer; }
+class window;
+class screen {
+  private:
+	bool     has_color;
+	unsigned width;
+	unsigned height;
 
-		void set_name(std::string name) { this->name = name; }
+	/* un "dirty rectangle" permet de suivre les modifications de l'ecran */
+	unsigned dirty_l = 0;
+	unsigned dirty_t = 0;
+	unsigned dirty_r = 0;
+	unsigned dirty_b = 0;
 
-		void set_position(int x, int y)
-		{
-			this->x = x;
-			this->y = y;
-		}
+	cell_renderer renderer;
 
-		void set_padding(unsigned padding)
-		{
-			padding_x = padding;
-			padding_y = padding;
-		}
+  public:
+	std::vector<window> window_list;
 
-		void set_padding(unsigned x, unsigned y)
-		{
-			padding_x = x;
-			padding_y = y;
-		}
+	screen();
 
-		void set_maximized(bool maximized) { this->maximized = maximized; }
-		void set_bordered(bool bordered) { this->bordered = bordered; }
+	unsigned get_width() const;
+	unsigned get_height() const;
 
-		void move_cursor_to(size_t cell);
-		void move_cursor_to(unsigned x, unsigned y);
-		void move_cursor_by(ptrdiff_t cells);
+	bool update();
+	void render();
+};
 
-		void clear();
-		void print(std::string const &s, attr_t attrs = A_NORMAL,
-				   short color_pair = 0);
-	};
+class window {
+  private:
+	screen const &scr;
+	std::string   name;
 
-	class screen
-	{
-	private:
-		unsigned width;
-		unsigned height;
+	int      x;
+	int      y;
+	unsigned width;
+	unsigned height;
 
-		/* un "dirty rectangle" permet de suivre les modifications de l'ecran */
-		unsigned dirty_l = 0;
-		unsigned dirty_t = 0;
-		unsigned dirty_r = 0;
-		unsigned dirty_b = 0;
+	unsigned padding_x;
+	unsigned padding_y;
+	bool     maximized;
+	bool     bordered;
 
-		cell *buffer;
+	unsigned cursor_x;
+	unsigned cursor_y;
 
-	public:
-		std::vector<window> window_list;
+	std::vector<cell> glyph_buf;
 
-		screen();
-		~screen();
+  public:
+	attr_t  attrs = A_NORMAL;
+	col_rgb fg;
+	col_rgb bg;
+	col_rgb border_fg;
+	col_rgb border_bg;
 
-		bool update();
-		void render();
-	};
+	window(screen const &scr, std::string name, int x, int y, unsigned width,
+	       unsigned height);
 
-	void init();
-	void set_interactive(bool interactive);
-	void fini();
+	std::string get_name() const { return name; }
+
+	int get_position_x() const { return padding_x + bordered + !maximized * x; }
+	int get_position_y() const { return padding_y + bordered + !maximized * y; }
+	unsigned get_width() const {
+		return std::max(maximized ? scr.get_width() : width,
+		                padding_x + bordered) -
+		       padding_x + bordered;
+	}
+	unsigned get_height() const {
+		return std::max(maximized ? scr.get_height() : height,
+		                padding_y + bordered) -
+		       padding_y + bordered;
+	}
+
+	unsigned get_padding_x() const { return padding_x; }
+	unsigned get_padding_y() const { return padding_y; }
+	bool     is_maximized() const { return maximized; }
+	bool     is_bordered() const { return bordered; }
+
+	unsigned get_cursor_x() const { return cursor_x - padding_x; }
+	unsigned get_cursor_y() const { return cursor_y - padding_y; }
+
+	std::vector<cell> const &get_buffer() const { return glyph_buf; }
+
+	void set_name(std::string name) { this->name = name; }
+
+	void set_position(int x, int y) {
+		this->x = x;
+		this->y = y;
+	}
+
+	void set_padding(unsigned padding) {
+		padding_x = padding;
+		padding_y = padding;
+	}
+
+	void set_padding(unsigned x, unsigned y) {
+		padding_x = x;
+		padding_y = y;
+	}
+
+	void set_maximized(bool maximized) { this->maximized = maximized; }
+	void set_bordered(bool bordered) { this->bordered = bordered; }
+
+	void move_cursor_to(size_t cell);
+	void move_cursor_to(unsigned x, unsigned y);
+	void move_cursor_by(ptrdiff_t cells);
+
+	void clear();
+	void print(std::string const &s, attr_t attrs = A_NORMAL,
+	           col_rgb fg = col_rgb(), col_rgb bg = col_rgb());
+};
+
+void init();
+void set_interactive(bool interactive);
+void fini();
 } // namespace term

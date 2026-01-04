@@ -63,6 +63,7 @@ struct Matrix // Pour l'optimisation
     void removalInRow(const casali::maPosition &pos, unsigned howMany);
     void switch2posColumn(const casali::maPosition &pos1, const casali::maPosition &pos2);
     bool atLeastThreeInARowFrom(size_t y, casali::maPosition &pos, unsigned &howMany) const;
+    void refill();
 };
 
 #endif

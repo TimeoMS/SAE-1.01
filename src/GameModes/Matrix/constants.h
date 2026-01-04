@@ -15,15 +15,8 @@ constexpr unsigned KMaxTimes(3);
 constexpr unsigned KNbCandies(7);
 constexpr unsigned KImpossible(KNbCandies);
 
-std::vector<unsigned> colorMap = {
-    KReset,
-    KNoir,
-    KRouge,
-    KVert,
-    KJaune,
-    KBleu,
-    KMAgenta,
-    KCyan
+constexpr unsigned colorMap[] = {
+    KReset, KNoir, KRouge, KVert, KJaune, KBleu, KMAgenta, KCyan
 };
 
 #endif

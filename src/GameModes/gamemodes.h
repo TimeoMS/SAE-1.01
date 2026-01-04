@@ -1,4 +1,6 @@
 namespace GameModes
 {
-    void normal();
+    void normal(int nbMoves);
+    void versuslaunch(int nbMoves);
+    void infinite();
 }

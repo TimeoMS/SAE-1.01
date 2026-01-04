@@ -202,6 +202,25 @@ void Matrix::switch2posColumn(const casali::maPosition &pos1, const casali::maPo
 }
 
 /**
+ * @brief remplit les case contenant kimpossiblr de la matrice
+ *
+ *  */
+void Matrix::refill()
+{
+    for (size_t x(0); x < n; ++x)
+    {
+        for (size_t y(0); y < n; ++y)
+        {
+            size_t index = y * n + x;
+            if (m[index] == KImpossible)
+            {
+                m[index] = rand() % KNbCandies;
+            }
+        }
+    }
+}
+
+/**
  * @brief supprime les élément dans une colonne
  * @param pos, howMany
  *

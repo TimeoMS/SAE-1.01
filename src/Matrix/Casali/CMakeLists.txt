@@ -1,1 +1,0 @@
-add_library(Casali SHARED casali.cpp)

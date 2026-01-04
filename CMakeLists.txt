@@ -9,7 +9,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
 
 add_executable(CandyCrush src/main.cpp)
 
-add_subdirectory(src/Matrix)
+add_subdirectory(src/GameModes)
 add_subdirectory(src/Term)
 
-target_link_libraries(CandyCrush PRIVATE Matrix Term)
+target_link_libraries(CandyCrush PRIVATE GameModes Term)

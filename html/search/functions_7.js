@@ -1,8 +1,14 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089',1,'main.cpp']]],
-  ['makeamove_1',['makeAMove',['../structMatrix.html#a63624453e0d3bbf2bac632996cce9b11',1,'Matrix']]],
-  ['matrix_2',['Matrix',['../structMatrix.html#a442e02d4da069ad8e5fdc9d945e904bc',1,'Matrix']]],
-  ['move_5fcursor_5fby_3',['move_cursor_by',['../classterm_1_1window.html#a6753d0e589a4b29422a7357b992d2cae',1,'term::window']]],
-  ['move_5fcursor_5fto_4',['move_cursor_to',['../classterm_1_1window.html#a3116ab507defe1e8843cb6458ca76ab0',1,'term::window::move_cursor_to(size_t cell)'],['../classterm_1_1window.html#a85adbac158a1cf0db8ab2036e6935317',1,'term::window::move_cursor_to(unsigned x, unsigned y)']]]
+  ['kbleu_0',['KBleu',['../constants_8h.html#a6744a3125c32915f143a6d4d5cf37be0',1,'constants.h']]],
+  ['kcyan_1',['KCyan',['../constants_8h.html#a858be24fd75e10a5a6119356450b29a9',1,'constants.h']]],
+  ['kimpossible_2',['KImpossible',['../constants_8h.html#a75c82af712bb4356022877b992f0520e',1,'constants.h']]],
+  ['kjaune_3',['KJaune',['../constants_8h.html#a6513ec2b1a43d06c2c9ad375bddc9d63',1,'constants.h']]],
+  ['kmagenta_4',['KMAgenta',['../constants_8h.html#abb68f0bca7a2a2d12e7bf99acb74674e',1,'constants.h']]],
+  ['kmaxtimes_5',['KMaxTimes',['../constants_8h.html#ad2be136be7b000ab450b1796667c0d9c',1,'constants.h']]],
+  ['knbcandies_6',['KNbCandies',['../constants_8h.html#ae8bee0a74fdc4f9d5cf09ed77e6fa708',1,'constants.h']]],
+  ['knoir_7',['KNoir',['../constants_8h.html#a28a57f586fb6ee299649f2333b5ff59c',1,'constants.h']]],
+  ['kreset_8',['KReset',['../constants_8h.html#abd1e4bc2fb20376e0efbffc56978e32a',1,'constants.h']]],
+  ['krouge_9',['KRouge',['../constants_8h.html#acb764ca9afa81878cc553da9746f34eb',1,'constants.h']]],
+  ['kvert_10',['KVert',['../constants_8h.html#a10fcd66f979d73658b080af933a3281f',1,'constants.h']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['print_0',['print',['../classterm_1_1window.html#a95ba1dbc899e1240cb133e841397c1dc',1,'term::window']]],
-  ['propos_20de_20tt_20matrix_20tt_1',['🟢 À propos de &lt;tt&gt;Matrix&lt;/tt&gt;',['../md_README.html#autotoc_md1',1,'']]]
+  ['operator_20new_0',['operator new',['../main_8cpp.html#a160dcabc54bbecfc69484678cafadb81',1,'main.cpp']]],
+  ['optimisation_20const_20en_20c_1',['⚡ Optimisation &amp;amp; const &amp;amp; en C++',['../md_README.html',1,'']]],
+  ['ord_2',['ord',['../structcasali_1_1maPosition.html#ab1912d2f3062a3afdbc1d9b984f5cd24',1,'casali::maPosition::ord'],['../structmaPosition.html#ab1912d2f3062a3afdbc1d9b984f5cd24',1,'maPosition::ord']]]
 ];

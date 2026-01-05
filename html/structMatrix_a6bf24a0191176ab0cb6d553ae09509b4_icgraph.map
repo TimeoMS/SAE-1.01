@@ -1,22 +1,22 @@
 <map id="Matrix::switch2posColumn" name="Matrix::switch2posColumn">
-<area shape="rect" id="Node000001" title="echange la position de deux element" alt="" coords="797,56,992,81"/>
-<area shape="rect" id="Node000002" href="$structMatrix.html#a235c08fd31d70da115f62636a1657890" title="supprime les élément dans une colonne" alt="" coords="561,31,749,56"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="783,60,749,56,750,51,784,54"/>
-<area shape="rect" id="Node000008" href="$structMatrix.html#a2a3e034555955a898bf1003002a6ec4a" title="supprime les élément dans une ligne" alt="" coords="572,80,739,105"/>
-<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="784,82,739,87,739,82,783,77"/>
-<area shape="rect" id="Node000003" href="$namespaceGameModes.html#a8d1b3487d9144130c538093f1aaaab6e" title=" " alt="" coords="355,5,513,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="548,34,512,30,513,24,548,28"/>
-<area shape="rect" id="Node000005" href="$namespaceGameModes.html#ae3b2867f40addea8191e2d19908d17af" title=" " alt="" coords="355,55,513,80"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="548,58,514,61,513,56,547,52"/>
-<area shape="rect" id="Node000006" href="$gamemodes_8cpp.html#adc2afa1c255be68cb9bbaabb737fb9ed" title=" " alt="" coords="401,104,467,129"/>
-<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="584,62,562,70,539,82,514,95,468,111,466,106,512,90,536,77,560,65,582,57"/>
-<area shape="rect" id="Node000004" href="$main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title=" " alt="" coords="5,55,60,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="341,26,230,35,108,51,61,62,60,57,108,46,229,30,341,20"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="341,70,60,70,60,65,341,65"/>
-<area shape="rect" id="Node000007" href="$namespaceGameModes.html#a6c3284943092702060817a4c597f2075" title=" " alt="" coords="108,105,307,131"/>
-<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="387,120,307,120,307,115,387,114"/>
-<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="149,104,59,78,61,73,150,99"/>
-<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="585,79,560,70,512,44,481,33,483,28,514,40,562,65,587,73"/>
-<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="558,84,513,79,514,74,559,79"/>
-<area shape="poly" id="edge12_Node000008_Node000006" title=" " alt="" coords="559,106,467,116,467,111,558,100"/>
+<area shape="rect" id="Node000001" title="echange la position de deux element" alt="" coords="794,59,988,86"/>
+<area shape="rect" id="Node000002" href="$structMatrix.html#a235c08fd31d70da115f62636a1657890" title="supprime les élément dans une colonne" alt="" coords="558,32,746,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="778,63,746,59,746,54,778,57"/>
+<area shape="rect" id="Node000008" href="$structMatrix.html#a2a3e034555955a898bf1003002a6ec4a" title="supprime les élément dans une ligne" alt="" coords="569,84,735,112"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="778,87,735,92,735,86,778,82"/>
+<area shape="rect" id="Node000003" href="$namespaceGameModes.html#a8d1b3487d9144130c538093f1aaaab6e" title=" " alt="" coords="354,5,510,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="542,35,510,31,511,26,543,30"/>
+<area shape="rect" id="Node000005" href="$namespaceGameModes.html#ae3b2867f40addea8191e2d19908d17af" title=" " alt="" coords="353,57,510,85"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="543,61,511,65,511,59,542,56"/>
+<area shape="rect" id="Node000006" href="$gamemodes_8cpp.html#adc2afa1c255be68cb9bbaabb737fb9ed" title=" " alt="" coords="400,109,464,137"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="581,67,559,75,511,99,465,116,463,111,509,94,557,70,579,62"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,57,60,85"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="338,28,228,38,108,55,61,66,60,61,107,50,227,33,338,22"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="337,74,60,74,60,68,337,68"/>
+<area shape="rect" id="Node000007" href="$namespaceGameModes.html#a6c3284943092702060817a4c597f2075" title=" " alt="" coords="108,108,305,136"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="384,126,305,125,305,120,384,120"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="141,106,59,82,61,76,143,101"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="578,81,557,74,509,48,477,36,479,31,511,43,559,69,580,76"/>
+<area shape="poly" id="edge11_Node000008_Node000005" title=" " alt="" coords="554,89,510,83,511,78,554,83"/>
+<area shape="poly" id="edge12_Node000008_Node000006" title=" " alt="" coords="554,112,465,122,464,117,554,106"/>
 </map>

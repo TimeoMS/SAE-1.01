@@ -1,0 +1,9 @@
+<map id="term::window::get_outer_x" name="term::window::get_outer_x">
+<area shape="rect" id="Node000001" title=" " alt="" coords="349,32,543,60"/>
+<area shape="rect" id="Node000002" href="$classterm_1_1window.html#af96768f59ac9ab96c4855986b085bbb9" title=" " alt="" coords="108,5,301,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="333,36,301,32,302,27,334,31"/>
+<area shape="rect" id="Node000003" href="$classterm_1_1screen.html#ae162d5f48a028bf9dd80f67980ed4a22" title=" " alt="" coords="128,57,281,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="334,60,282,66,281,60,334,55"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#ac0f2228420376f4db7e1274f2b41667c" title=" " alt="" coords="5,57,60,85"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="112,74,60,74,60,68,112,68"/>
+</map>

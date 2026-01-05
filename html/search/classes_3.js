@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['window_0',['window',['../classterm_1_1window.html',1,'term']]]
+  ['maposition_0',['maPosition',['../structcasali_1_1maPosition.html',1,'casali::maPosition'],['../structmaPosition.html',1,'maPosition']]],
+  ['matrix_1',['Matrix',['../structMatrix.html',1,'']]]
 ];

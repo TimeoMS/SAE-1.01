@@ -1,0 +1,19 @@
+<map id="term::screen::update" name="term::screen::update">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,88,162,116"/>
+<area shape="rect" id="Node000002" href="$classterm_1_1window.html#a00de40255241b9093d3b6d25e90bbf23" title=" " alt="" coords="210,5,410,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,85,209,43,234,35,236,40,211,48,115,90"/>
+<area shape="rect" id="Node000003" href="$classterm_1_1window.html#ad36b9ea32986be7475b1fafd7f6d2846" title=" " alt="" coords="210,57,410,85"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,89,194,84,195,89,162,94"/>
+<area shape="rect" id="Node000004" href="$classterm_1_1window.html#a3116ab507defe1e8843cb6458ca76ab0" title=" " alt="" coords="233,109,387,154"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="162,109,217,117,217,122,161,115"/>
+<area shape="rect" id="Node000009" href="$classterm_1_1window.html#a1e52713b10029e054b6a89e03077af74" title=" " alt="" coords="234,177,386,205"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="110,114,156,139,211,163,230,170,228,175,209,168,154,144,108,119"/>
+<area shape="rect" id="Node000005" href="$classterm_1_1window.html#a8d086b473b8b2e21fc186ae697c113b1" title=" " alt="" coords="458,74,636,119"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="387,117,442,109,443,114,388,123"/>
+<area shape="rect" id="Node000007" href="$classterm_1_1window.html#a6d807b2f397d54edd9fc4207a453036c" title=" " alt="" coords="458,144,636,188"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="388,140,443,148,442,153,387,145"/>
+<area shape="rect" id="Node000006" href="$classterm_1_1window.html#af0ed5d81cd44a80c47611bd4e8dedf96" title=" " alt="" coords="684,74,864,119"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="636,94,669,94,669,99,636,99"/>
+<area shape="rect" id="Node000008" href="$classterm_1_1window.html#a510e0c459c377d3a4b32d16e2e59ca79" title=" " alt="" coords="684,144,864,188"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="636,163,669,163,669,168,636,168"/>
+</map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['screen_0',['screen',['../classterm_1_1screen.html',1,'term']]]
+  ['label_0',['label',['../structterm_1_1label.html',1,'term']]]
 ];

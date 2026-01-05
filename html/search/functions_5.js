@@ -1,7 +1,20 @@
 var searchData=
 [
-  ['infinite_0',['infinite',['../namespaceGameModes.html#a8d1b3487d9144130c538093f1aaaab6e',1,'GameModes']]],
-  ['init_1',['init',['../namespaceterm.html#a233d3896b22f1743d57db7853e4716d4',1,'term']]],
-  ['is_5fbordered_2',['is_bordered',['../classterm_1_1window.html#af3cf0e23552e5565cae5adb25a903062',1,'term::window']]],
-  ['is_5fmaximized_3',['is_maximized',['../classterm_1_1window.html#a7152066dd81f55bafc25627b86642aff',1,'term::window']]]
+  ['get_5fbuffer_0',['get_buffer',['../classterm_1_1window.html#ab0c0a5bc9c676c23cfbf7207cfc78f6a',1,'term::window']]],
+  ['get_5fcursor_5fx_1',['get_cursor_x',['../classterm_1_1window.html#a00de40255241b9093d3b6d25e90bbf23',1,'term::window']]],
+  ['get_5fcursor_5fy_2',['get_cursor_y',['../classterm_1_1window.html#ad36b9ea32986be7475b1fafd7f6d2846',1,'term::window']]],
+  ['get_5fheight_3',['get_height',['../classterm_1_1screen.html#a8e9b4541b894d7e4f746a3653534a674',1,'term::screen']]],
+  ['get_5finner_5fheight_4',['get_inner_height',['../classterm_1_1window.html#a8d086b473b8b2e21fc186ae697c113b1',1,'term::window']]],
+  ['get_5finner_5fwidth_5',['get_inner_width',['../classterm_1_1window.html#a6d807b2f397d54edd9fc4207a453036c',1,'term::window']]],
+  ['get_5finner_5fx_6',['get_inner_x',['../classterm_1_1window.html#af96768f59ac9ab96c4855986b085bbb9',1,'term::window']]],
+  ['get_5finner_5fy_7',['get_inner_y',['../classterm_1_1window.html#ac39f842fdb7988979ecfa18e2acfc38b',1,'term::window']]],
+  ['get_5fname_8',['get_name',['../classterm_1_1window.html#a41e7eea0d1acae0f1aa364c436c94346',1,'term::window']]],
+  ['get_5fouter_5fheight_9',['get_outer_height',['../classterm_1_1window.html#af0ed5d81cd44a80c47611bd4e8dedf96',1,'term::window']]],
+  ['get_5fouter_5fwidth_10',['get_outer_width',['../classterm_1_1window.html#a510e0c459c377d3a4b32d16e2e59ca79',1,'term::window']]],
+  ['get_5fouter_5fx_11',['get_outer_x',['../classterm_1_1window.html#a908746b4cedc23caed8d2443081f088c',1,'term::window']]],
+  ['get_5fouter_5fy_12',['get_outer_y',['../classterm_1_1window.html#a6355f326d50457d124b7ec689c7e1909',1,'term::window']]],
+  ['get_5fpadding_5fx_13',['get_padding_x',['../classterm_1_1window.html#a1db2e640de13fac68cf9d46256e13764',1,'term::window']]],
+  ['get_5fpadding_5fy_14',['get_padding_y',['../classterm_1_1window.html#a0c31f191728f267feca34eb963cfaa64',1,'term::window']]],
+  ['get_5fpressed_15',['get_pressed',['../classterm_1_1window.html#a23bff6d04834d70ebd2e1fd59efb8bb2',1,'term::window']]],
+  ['get_5fwidth_16',['get_width',['../classterm_1_1screen.html#a7c673a16da42e5f4fa3766912786b68c',1,'term::screen']]]
 ];

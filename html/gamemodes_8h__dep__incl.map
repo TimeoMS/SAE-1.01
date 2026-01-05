@@ -1,7 +1,7 @@
 <map id="src/GameModes/gamemodes.h" name="src/GameModes/gamemodes.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="110,5,334,31"/>
-<area shape="rect" id="Node000002" href="$gamemodes_8cpp.html" title=" " alt="" coords="5,79,244,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,41,142,81,139,76,194,37"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html" title=" " alt="" coords="268,79,373,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="250,36,306,76,303,81,247,41"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="110,5,334,33"/>
+<area shape="rect" id="Node000002" href="$gamemodes_8cpp.html" title=" " alt="" coords="5,81,244,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,45,143,83,140,78,191,40"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html" title=" " alt="" coords="268,81,373,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="253,40,305,78,301,83,250,45"/>
 </map>

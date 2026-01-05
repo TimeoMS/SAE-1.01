@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['maposition_0',['maPosition',['../structcasali_1_1maPosition.html',1,'casali']]],
-  ['matrix_1',['Matrix',['../structMatrix.html',1,'']]]
+  ['cell_0',['cell',['../structterm_1_1cell.html',1,'term']]],
+  ['cell_5fprops_1',['cell_props',['../structterm_1_1cell__props.html',1,'term']]]
 ];

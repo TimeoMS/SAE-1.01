@@ -1,0 +1,11 @@
+<map id="term::window::move_cursor_by" name="term::window::move_cursor_by">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,40,160,85"/>
+<area shape="rect" id="Node000002" href="$classterm_1_1window.html#a8d086b473b8b2e21fc186ae697c113b1" title=" " alt="" coords="208,5,386,50"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="160,47,192,42,193,47,161,52"/>
+<area shape="rect" id="Node000004" href="$classterm_1_1window.html#a6d807b2f397d54edd9fc4207a453036c" title=" " alt="" coords="208,75,386,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="161,72,193,77,192,83,160,77"/>
+<area shape="rect" id="Node000003" href="$classterm_1_1window.html#af0ed5d81cd44a80c47611bd4e8dedf96" title=" " alt="" coords="434,5,613,50"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="386,25,418,25,418,30,386,30"/>
+<area shape="rect" id="Node000005" href="$classterm_1_1window.html#a510e0c459c377d3a4b32d16e2e59ca79" title=" " alt="" coords="434,75,613,119"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="386,94,418,94,418,100,386,100"/>
+</map>

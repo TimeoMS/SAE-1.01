@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print_0',['print',['../classterm_1_1window.html#a95ba1dbc899e1240cb133e841397c1dc',1,'term::window']]]
+  ['operator_20new_0',['operator new',['../main_8cpp.html#a160dcabc54bbecfc69484678cafadb81',1,'main.cpp']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_20chtype_0',['operator chtype',['../unionterm_1_1cell.html#a5cd82b9938d9556222a380ff04e80658',1,'term::cell']]]
+  ['normal_0',['normal',['../namespaceGameModes.html#ae3b2867f40addea8191e2d19908d17af',1,'GameModes']]]
 ];

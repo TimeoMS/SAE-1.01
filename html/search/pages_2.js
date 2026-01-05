@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['optimisation_20const_20en_20c_0',['⚡ Optimisation &amp; const &amp; en C++',['../md_README.html',1,'']]]
+  ['de_20matrix_0',['🟢 À propos de &lt;span class=&quot;tt&quot;&gt;Matrix&lt;/span&gt;',['../md_README.html#autotoc_md1',1,'']]]
 ];

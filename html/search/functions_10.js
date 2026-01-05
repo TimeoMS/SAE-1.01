@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7escreen_0',['~screen',['../classterm_1_1screen.html#ac509babe6a187e9230acdf3c007119a3',1,'term::screen']]]
+  ['window_0',['window',['../classterm_1_1window.html#ab17a00c0751af3bfd92781105ac56794',1,'term::window']]]
 ];

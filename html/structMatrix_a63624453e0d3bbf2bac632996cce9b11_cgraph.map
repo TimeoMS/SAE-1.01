@@ -1,5 +1,5 @@
 <map id="Matrix::makeAMove" name="Matrix::makeAMove">
-<area shape="rect" id="Node000001" title="permet de changer les posisiont de deux element d&#39;une matrice en fonction de l&#39;imput joueur" alt="" coords="5,5,159,31"/>
-<area shape="rect" id="Node000002" href="$structMatrix.html#aa09be19b8b8907e9b056826f31fa0757" title="cherche un emplacement 1D a partir de coordonée 2D" alt="" coords="207,5,292,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,15,193,15,193,21,159,21"/>
+<area shape="rect" id="Node000001" title="permet de changer les posisiont de deux element d&#39;une matrice en fonction de l&#39;imput joueur" alt="" coords="5,5,158,33"/>
+<area shape="rect" id="Node000002" href="$structMatrix.html#aa09be19b8b8907e9b056826f31fa0757" title="cherche un emplacement 1D a partir de coordonée 2D" alt="" coords="206,5,290,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,16,190,16,190,22,158,22"/>
 </map>

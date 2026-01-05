@@ -9,9 +9,23 @@
 #define KEY_CTRL(c) ((c) & 0x1f)
 
 namespace term {
+static bool _term_fin = false;
+
 void init() {
+	_term_fin = false;
 	initscr();
 	noecho();
+
+	if (has_colors()) {
+		start_color();
+		use_default_colors();
+
+		for (int i = 0; i < 8; ++i) {
+			for (int j = 0; j < 8; ++j) {
+				init_pair(CPAIR(i, j), i, j);
+			}
+		}
+	}
 }
 
 void set_interactive(bool interactive) {
@@ -28,7 +42,14 @@ void set_interactive(bool interactive) {
 	}
 }
 
-void fini() { endwin(); }
+void fini() {
+	if (!_term_fin) {
+		_term_fin = true;
+		set_interactive(false);
+		echo();
+		endwin();
+	}
+}
 
 window::window(screen const &scr, std::string name, int x, int y,
                unsigned width, unsigned height)
@@ -40,17 +61,17 @@ void window::move_cursor_to(size_t cell) {
 	size_t tmp_width;
 	size_t tmp_height;
 
-	tmp_width  = width - padding_x * 2;
-	tmp_height = height - padding_y * 2;
+	tmp_width  = get_inner_width();
+	tmp_height = get_inner_height();
 
 	cell     = std::min(cell, tmp_width * tmp_height - 1);
-	cursor_x = unsigned(padding_x + cell % tmp_width);
-	cursor_y = unsigned(padding_y + cell / tmp_width);
+	cursor_x = unsigned(cell % tmp_width);
+	cursor_y = unsigned(cell / tmp_width);
 }
 
 void window::move_cursor_to(unsigned x, unsigned y) {
-	x = std::min(x, width - 1);
-	y = std::min(y, height - 1);
+	x = std::min(x, get_inner_width() - 1);
+	y = std::min(y, get_inner_height() - 1);
 
 	this->cursor_x = x;
 	this->cursor_y = y;
@@ -59,24 +80,16 @@ void window::move_cursor_to(unsigned x, unsigned y) {
 void window::move_cursor_by(ptrdiff_t cells) {
 	ptrdiff_t tmp_width;
 	ptrdiff_t tmp_height;
-	ptrdiff_t tmp_curx;
-	ptrdiff_t tmp_cury;
 	size_t    i;
 
-	if (padding_x >= width / 2 || padding_y >= height / 2) {
-		return;
-	}
+	tmp_width  = get_inner_width();
+	tmp_height = get_inner_height();
 
-	tmp_width  = width - padding_x * 2;
-	tmp_height = height - padding_y * 2;
-	tmp_curx   = cursor_x - padding_x;
-	tmp_cury   = cursor_y - padding_y;
-
-	i = size_t(std::clamp(tmp_cury * tmp_width + tmp_curx + cells, ptrdiff_t(0),
+	i = size_t(std::clamp(cursor_x * tmp_width + cursor_y + cells, ptrdiff_t(0),
 	                      tmp_width * tmp_height - 1));
 
-	cursor_x = unsigned(padding_x + i % tmp_width);
-	cursor_y = unsigned(padding_y + i / tmp_width);
+	cursor_x = unsigned(i % tmp_width);
+	cursor_y = unsigned(i / tmp_width);
 }
 
 void window::clear() { glyph_buf.clear(); }
@@ -93,12 +106,6 @@ screen::screen() {
 	int h;
 
 	getmaxyx(stdscr, h, w);
-	dirty_l = 0, dirty_t = 0, dirty_r = w - 1, dirty_b = h - 1;
-
-	if ((has_color = has_colors())) {
-		start_color();
-		use_default_colors();
-	}
 
 	width  = w;
 	height = h;
@@ -123,6 +130,10 @@ bool screen::update() {
 	int w;
 	int h;
 
+	if (_term_fin) {
+		return false;
+	}
+
 	getmaxyx(stdscr, h, w);
 
 	if (w != width || h != height) {
@@ -131,10 +142,53 @@ bool screen::update() {
 
 	ch = getch();
 
+	window &focused = this->window_list[0];
+
 	switch (ch) {
 	default:
 		break;
-	case 'q':
+	case KEY_UP:
+	case 'w':
+		focused.move_cursor_to(focused.get_cursor_x(),
+		                       focused.get_cursor_y() - 1);
+		break;
+	case KEY_DOWN:
+	case 's':
+		focused.move_cursor_to(focused.get_cursor_x(),
+		                       focused.get_cursor_y() + 1);
+		break;
+	case KEY_LEFT:
+	case 'a':
+		focused.move_cursor_to(focused.get_cursor_x() - 1,
+		                       focused.get_cursor_y());
+		break;
+	case KEY_RIGHT:
+	case 'd':
+		focused.move_cursor_to(focused.get_cursor_x() + 1,
+		                       focused.get_cursor_y());
+		break;
+	case KEY_ENTER:
+	case ' ': {
+		size_t i;
+
+		for (i = 0; i < focused.widgets.size(); ++i) {
+			std::shared_ptr<widget> ptr = focused.widgets[i];
+
+			auto w = ptr.get();
+			int  l, t, r, b;
+			int  curx, cury;
+
+			l = w->x, t = w->y;
+			r = l + w->width - 1, b = t + w->height - 1;
+			curx = focused.get_cursor_x(), cury = focused.get_cursor_y();
+
+			if (curx >= l && curx <= r && cury >= t && cury <= b) {
+				focused.press(i);
+				break;
+			}
+		}
+		break;
+	}
 	case KEY_CTRL('c'):
 		return false;
 	}
@@ -147,8 +201,7 @@ static cell render_glyph(window const &win, int x, int y) {
 	                           ACS_LRCORNER};
 
 	std::vector<cell> win_buffer;
-
-	size_t i;
+	size_t            i;
 
 	int pad_x  = win.get_padding_x();
 	int pad_y  = win.get_padding_y();
@@ -188,12 +241,43 @@ static cell render_glyph(window const &win, int x, int y) {
 	i = (y - top) * (win.get_inner_width()) + (x - left);
 
 	win_buffer = win.get_buffer();
+	win_buffer.resize(win.get_inner_width() * win.get_inner_height(),
+	                  cell(' ', win.props));
 
-	if (i < win_buffer.size()) {
-		return win_buffer[i];
-	} else {
-		return cell(' ', win.props);
+	for (std::shared_ptr<widget> ptr : win.widgets) {
+		unsigned u, v;
+		widget  *w;
+
+		w = ptr.get();
+
+		std::vector<cell> buf(w->width * w->height, cell(' '));
+		w->render(buf);
+
+		for (v = 0; v < w->height; ++v) {
+			for (u = 0; u < w->width; ++u) {
+				size_t j;
+				size_t k;
+
+				j = (w->y + v) * win.get_inner_width() + (w->x + u);
+				k = v * w->width + u;
+
+				if (j < win_buffer.size() && k < buf.size()) {
+					win_buffer[j] = buf[k];
+				}
+			}
+		}
 	}
+
+	if (x == (win.get_inner_x() + win.get_cursor_x()) &&
+	    y == (win.get_inner_y() + win.get_cursor_y())) {
+		short fg, bg;
+		fg = CPAIR_FG(win_buffer[i].color_pair);
+		bg = CPAIR_BG(win_buffer[i].color_pair);
+
+		win_buffer[i].color_pair = CPAIR(bg, fg);
+	}
+
+	return win_buffer[i];
 }
 
 void screen::render() {
@@ -201,33 +285,17 @@ void screen::render() {
 
 	std::fill(glyph_buf.begin(), glyph_buf.end(), cell(' '));
 
-	dirty_l = std::max(dirty_l, 0u);
-	dirty_t = std::max(dirty_t, 0u);
-	dirty_r = std::min(dirty_r, width - 1);
-	dirty_b = std::min(dirty_b, height - 1);
-
-	for (window const &win : window_list) {
+	for (auto win = window_list.rbegin(); win != window_list.rend(); ++win) {
 		int l, t, r, b;
-		dirty_l = 0, dirty_t = 0, dirty_r = width - 1, dirty_b = height - 1;
 
-		int border = win.is_bordered();
-		int pad_x  = win.get_padding_x();
-		int pad_y  = win.get_padding_y();
-
-		if (win.is_maximized()) {
-			l = dirty_l, t = dirty_t, r = dirty_r, b = dirty_b;
-		} else {
-			l = std::max(win.get_outer_x(), dirty_l);
-			t = std::max(win.get_outer_y(), dirty_t);
-			r = std::min(win.get_outer_x() + int(win.get_outer_width()) - 1,
-			             dirty_r);
-			b = std::min(win.get_outer_y() + int(win.get_outer_height()) - 1,
-			             dirty_b);
-		}
+		l = win->get_outer_x();
+		t = win->get_outer_y();
+		r = win->get_outer_x() + int(win->get_outer_width() - 1);
+		b = win->get_outer_y() + int(win->get_outer_height() - 1);
 
 		for (int y = t; y <= b; ++y) {
 			for (int x = l; x <= r; ++x) {
-				glyph_buf[y * width + x] = render_glyph(win, x, y);
+				glyph_buf[y * width + x] = render_glyph(*win, x, y);
 			}
 		}
 	}
@@ -242,5 +310,25 @@ void screen::render() {
 	}
 
 	refresh();
+}
+
+void widget::clear() { glyph_buf.clear(); }
+
+void widget::print(std::string const &s, attr_t attrs, short color_pair) {
+	for (char ch : s) {
+		glyph_buf.push_back(cell(ch, attrs, color_pair));
+	}
+}
+
+void label::render(std::vector<cell> &output) {
+	this->clear();
+	print(text, props.attrs, props.color_pair);
+	std::copy(glyph_buf.begin(), glyph_buf.end(), output.begin());
+}
+
+void button::render(std::vector<cell> &output) {
+	this->clear();
+	print(text, props.attrs, props.color_pair);
+	std::copy(glyph_buf.begin(), glyph_buf.end(), output.begin());
 }
 } // namespace term

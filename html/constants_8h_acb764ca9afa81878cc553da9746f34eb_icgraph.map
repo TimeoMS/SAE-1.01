@@ -1,0 +1,15 @@
+<map id="KRouge" name="KRouge">
+<area shape="rect" id="Node000001" title=" " alt="" coords="561,56,633,81"/>
+<area shape="rect" id="Node000002" href="$namespaceGameModes.html#a8d1b3487d9144130c538093f1aaaab6e" title=" " alt="" coords="129,5,286,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="548,55,513,46,394,30,286,23,286,17,395,24,514,41,549,50"/>
+<area shape="rect" id="Node000004" href="$namespaceGameModes.html#ae3b2867f40addea8191e2d19908d17af" title=" " alt="" coords="355,56,513,81"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="548,71,514,71,514,66,548,66"/>
+<area shape="rect" id="Node000005" href="$gamemodes_8cpp.html#adc2afa1c255be68cb9bbaabb737fb9ed" title=" " alt="" coords="401,105,467,131"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="549,86,468,111,466,106,548,81"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#abf9e6b7e6f15df4b525a2e7705ba3089" title=" " alt="" coords="5,56,60,81"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="150,37,61,63,59,58,149,32"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="341,71,60,71,60,66,341,66"/>
+<area shape="rect" id="Node000006" href="$namespaceGameModes.html#a6c3284943092702060817a4c597f2075" title=" " alt="" coords="108,107,307,132"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="387,121,307,121,307,116,387,116"/>
+<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="149,105,59,79,61,74,150,100"/>
+</map>

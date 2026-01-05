@@ -1,9 +1,14 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
 
 #include <ncurses.h>
+
+#define CPAIR(f, b) (1 + (f) * 8 + (b))
+#define CPAIR_FG(cpair) (((cpair) - 1) / 8)
+#define CPAIR_BG(cpair) (((cpair) - 1) % 8)
 
 namespace term {
 struct rect {
@@ -35,18 +40,30 @@ struct cell {
 		: glyph(glyph), attrs(attrs), color_pair(color_pair) {}
 };
 
+struct widget {
+  protected:
+	std::vector<cell> glyph_buf;
+
+	void clear();
+	void print(std::string const &s, attr_t attrs, short color_pair);
+
+  public:
+	int        x;
+	int        y;
+	unsigned   width;
+	unsigned   height;
+	cell_props props;
+
+	virtual ~widget() = default;
+
+	virtual void render(std::vector<cell> &output) = 0;
+};
+
 class window;
 class screen {
   private:
-	bool     has_color;
 	unsigned width;
 	unsigned height;
-
-	/* un "dirty rectangle" permet de suivre les modifications de l'ecran */
-	unsigned dirty_l = 0;
-	unsigned dirty_t = 0;
-	unsigned dirty_r = 0;
-	unsigned dirty_b = 0;
 
 	std::vector<cell> glyph_buf;
 
@@ -80,19 +97,22 @@ class window {
 	unsigned cursor_x = 0;
 	unsigned cursor_y = 0;
 
+	int pressed_widget = -1;
+
 	std::vector<cell> glyph_buf;
 
   public:
 	cell_props props;
+
+	std::vector<std::shared_ptr<widget>> widgets;
 
 	window(screen const &scr, std::string name, int x, int y, unsigned width,
 	       unsigned height);
 
 	std::string get_name() const { return name; }
 
-	unsigned get_outer_x() const { return !maximized * x; }
-	unsigned get_outer_y() const { return !maximized * y; }
-
+	int      get_outer_x() const { return !maximized * x; }
+	int      get_outer_y() const { return !maximized * y; }
 	unsigned get_outer_width() const {
 		return maximized ? scr.get_width() : width;
 	}
@@ -148,9 +168,24 @@ class window {
 	void clear();
 	void print(std::string const &s, attr_t attrs = A_NORMAL,
 	           short color_pair = 0);
+
+	int  get_pressed() { return pressed_widget; }
+	void press(int widget_index) { pressed_widget = widget_index; }
 };
 
-class ui_node {};
+struct label : public widget {
+	std::string text;
+
+	void render(std::vector<cell> &output) override;
+};
+
+struct button : public widget {
+	std::string text;
+
+	button() { props.color_pair = CPAIR(COLOR_BLACK, COLOR_WHITE); }
+
+	void render(std::vector<cell> &output) override;
+};
 
 void init();
 void set_interactive(bool interactive);

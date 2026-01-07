@@ -3,26 +3,30 @@
 #include "gamemodes.h"
 #include <sstream>
 
-bool readInput(size_t &x, size_t &y, char &direction) {
+bool readInput(size_t &x, size_t &y, char &direction)
+{
 	std::string line;
 	if (!std::getline(std::cin, line))
 		return false;
 
 	std::istringstream iss(line);
 
-	if (iss >> x >> y >> direction) {
+	if (iss >> x >> y >> direction)
+	{
 		return true;
 	}
 	return false;
 }
 
-void GameModes::infinite() {
-	Matrix   m(5);
+void GameModes::infinite()
+{
+	Matrix m(5);
 	unsigned score(0);
-	for (;;) {
+	for (;;)
+	{
 		size_t x(0);
 		size_t y(0);
-		char   direction('d');
+		char direction('d');
 
 		m.refill();
 		m.displayGrid();
@@ -31,7 +35,8 @@ void GameModes::infinite() {
 			<< "x y direction (u d l r, q pour quitter) (votre score est de "
 			<< score << "): ";
 
-		if (!readInput(x, y, direction)) {
+		if (!readInput(x, y, direction))
+		{
 			casali::couleur(KRouge);
 			std::cerr << "Erreur de saisie\n";
 			casali::couleur(KReset);
@@ -42,29 +47,34 @@ void GameModes::infinite() {
 			break;
 
 		if (direction != 'u' && direction != 'd' && direction != 'r' &&
-		    direction != 'l')
+			direction != 'l')
 			std::cerr << "Direction n est pas bien utilise\n";
 
 		m.makeAMove({x, y}, direction);
 
 		bool comboFound;
 
-		do {
+		do
+		{
 			casali::maPosition pos{0, 0};
 			comboFound = false;
 
-			for (size_t col(0); col < m.n; ++col) {
+			for (size_t col(0); col < m.n; ++col)
+			{
 				unsigned howMany(0);
-				if (m.atLeastThreeInAColumnFrom(col, pos, howMany)) {
+				if (m.atLeastThreeInAColumnFrom(col, pos, howMany))
+				{
 					score += howMany;
 					m.removalInColumn(pos, howMany);
 					comboFound = true;
 				}
 			}
 
-			for (size_t row(0); row < m.n; ++row) {
+			for (size_t row(0); row < m.n; ++row)
+			{
 				unsigned howMany(0);
-				if (m.atLeastThreeInARowFrom(row, pos, howMany)) {
+				if (m.atLeastThreeInARowFrom(row, pos, howMany))
+				{
 					score += howMany;
 					m.removalInRow(pos, howMany);
 					comboFound = true;
@@ -78,13 +88,15 @@ void GameModes::infinite() {
 	}
 }
 
-void GameModes::normal(int nbMoves) {
-	Matrix   m(5);
+void GameModes::normal(int nbMoves)
+{
+	Matrix m(5);
 	unsigned score(0);
-	for (unsigned i(0); i < nbMoves; i += 1) {
+	for (unsigned i(0); i < nbMoves; i += 1)
+	{
 		size_t x(0);
 		size_t y(0);
-		char   direction('d');
+		char direction('d');
 
 		m.displayGrid();
 
@@ -92,7 +104,8 @@ void GameModes::normal(int nbMoves) {
 			<< "x y direction (u d l r, q pour quitter) (votre score est de "
 			<< score << "): ";
 
-		if (!readInput(x, y, direction)) {
+		if (!readInput(x, y, direction))
+		{
 			casali::couleur(KRouge);
 			std::cerr << "Erreur de saisie\n";
 			casali::couleur(KReset);
@@ -103,29 +116,34 @@ void GameModes::normal(int nbMoves) {
 			break;
 
 		if (direction != 'u' && direction != 'd' && direction != 'r' &&
-		    direction != 'l')
+			direction != 'l')
 			std::cerr << "Direction n est pas bien utilise\n";
 
 		m.makeAMove({x, y}, direction);
 
 		bool comboFound;
 
-		do {
+		do
+		{
 			casali::maPosition pos{0, 0};
 			comboFound = false;
 
-			for (size_t col(0); col < m.n; ++col) {
+			for (size_t col(0); col < m.n; ++col)
+			{
 				unsigned howMany(0);
-				if (m.atLeastThreeInAColumnFrom(col, pos, howMany)) {
+				if (m.atLeastThreeInAColumnFrom(col, pos, howMany))
+				{
 					score += howMany;
 					m.removalInColumn(pos, howMany);
 					comboFound = true;
 				}
 			}
 
-			for (size_t row(0); row < m.n; ++row) {
+			for (size_t row(0); row < m.n; ++row)
+			{
 				unsigned howMany(0);
-				if (m.atLeastThreeInARowFrom(row, pos, howMany)) {
+				if (m.atLeastThreeInARowFrom(row, pos, howMany))
+				{
 					score += howMany;
 					m.removalInRow(pos, howMany);
 					comboFound = true;
@@ -139,10 +157,11 @@ void GameModes::normal(int nbMoves) {
 	}
 }
 
-void versus(Matrix &m, unsigned &score, int player) {
+void versus(Matrix &m, unsigned &score, int player)
+{
 	size_t x(0);
 	size_t y(0);
-	char   direction('d');
+	char direction('d');
 
 	m.displayGrid();
 
@@ -151,7 +170,8 @@ void versus(Matrix &m, unsigned &score, int player) {
 		<< ": x y direction (u d l r, q pour quitter) (votre score est de "
 		<< score << "): ";
 
-	if (!readInput(x, y, direction)) {
+	if (!readInput(x, y, direction))
+	{
 		casali::couleur(KRouge);
 		std::cerr << "Erreur de saisie\n";
 		casali::couleur(KReset);
@@ -162,29 +182,34 @@ void versus(Matrix &m, unsigned &score, int player) {
 		exit(0);
 
 	if (direction != 'u' && direction != 'd' && direction != 'r' &&
-	    direction != 'l')
+		direction != 'l')
 		std::cerr << "Direction n est pas bien utilise\n";
 
 	m.makeAMove({x, y}, direction);
 
 	bool comboFound;
 
-	do {
+	do
+	{
 		casali::maPosition pos{0, 0};
 		comboFound = false;
 
-		for (size_t col(0); col < m.n; ++col) {
+		for (size_t col(0); col < m.n; ++col)
+		{
 			unsigned howMany(0);
-			if (m.atLeastThreeInAColumnFrom(col, pos, howMany)) {
+			if (m.atLeastThreeInAColumnFrom(col, pos, howMany))
+			{
 				score += howMany;
 				m.removalInColumn(pos, howMany);
 				comboFound = true;
 			}
 		}
 
-		for (size_t row(0); row < m.n; ++row) {
+		for (size_t row(0); row < m.n; ++row)
+		{
 			unsigned howMany(0);
-			if (m.atLeastThreeInARowFrom(row, pos, howMany)) {
+			if (m.atLeastThreeInARowFrom(row, pos, howMany))
+			{
 				score += howMany;
 				m.removalInRow(pos, howMany);
 				comboFound = true;
@@ -197,13 +222,15 @@ void versus(Matrix &m, unsigned &score, int player) {
 	} while (comboFound);
 }
 
-void GameModes::versuslaunch(int nbMoves) {
-	Matrix   j1(5);
-	Matrix   j2 = j1;
+void GameModes::versuslaunch(int nbMoves)
+{
+	Matrix j1(5);
+	Matrix j2 = j1;
 	unsigned scorej1(0);
 	unsigned scorej2(0);
 
-	for (unsigned i(0); i < nbMoves * 2; i += 1) {
+	for (unsigned i(0); i < nbMoves * 2; i += 1)
+	{
 		bool Player1Turn = true;
 		if (Player1Turn)
 			Player1Turn = false;

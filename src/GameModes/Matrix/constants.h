@@ -16,7 +16,6 @@ constexpr unsigned KNbCandies(7);
 constexpr unsigned KImpossible(KNbCandies);
 
 constexpr unsigned colorMap[] = {
-    KReset, KNoir, KRouge, KVert, KJaune, KBleu, KMAgenta, KCyan
-};
+    KReset, KNoir, KRouge, KVert, KJaune, KBleu, KMAgenta, KCyan};
 
 #endif
